@@ -79,7 +79,7 @@ _ar.analytics = {
 
     //  百度统计
     baidu: function () {
-        this.loadScript('百度统计', 'https://hm.baidu.com/hm.js?edb763999871c8ee2878208ca73df443');
+        this.loadScript('百度统计', 'https://hm.baidu.com/hm.js?451905ef8df7b993c1fbc577f51a3b69');
     },
 
     //  CNZZ
