@@ -1,0 +1,22 @@
+
+#offcanvas-menu {
+  background:rgba(42,42,42,.9);
+}
+
+.kratos-cover.kratos-cover_2 {
+  background-image:url('//i.loli.net/2019/08/25/lA6iv49xIKCfBZP.png?/images/background-img/s-572918.jpg');
+}
+
+/* @media(max-width:768px) {
+  .kratos-cover.kratos-cover_2 {
+    background-image:url('/images/background-img/s-572918.jpg');
+    }
+} */
+
+.photo-background {
+  background-color: #dedede;
+  /* background:url('/images/bg_small.jpg') no-repeat center center;
+  -webkit-background-size:cover;
+  background-size:cover; */
+}
+

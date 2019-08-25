@@ -1,0 +1,159 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=generator content="Hugo 0.57.2"><meta name=description content="概述 Markdown 的目标是实现「易读易写」。 可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响， …"><title>Markdown 语法整理 - ARAE</title><link rel=canonical href=https://arae.cc/post/25645.html><link rel=icon href=/images/favicon.png><link rel=stylesheet href="https://arae.cc/css/font-awesome.min.css?ver=4.7.0"><link rel=stylesheet href="https://arae.cc/css/kratos.min.css?ver=0.4.0"><link rel=stylesheet href=https://arae.cc/css/styles.css><script src=https://arae.cc/js/jquery.min.js></script><script src="https://arae.cc/js/theme.min.js?ver=0.4.0"></script><script src="https://arae.cc/js/kratos.js?ver=0.4.0"></script><script src="https://arae.cc/js/pjax.js?ver=0.4.0"></script><script src=https://arae.cc/js/main.js></script></head><body><div id=kratos-wrapper><div id=kratos-page><div id=kratos-header><header id=kratos-header-section><div class=container><div class=nav-header><nav id=kratos-menu-wrap class=menu-main-container><ul id=kratos-primary-menu class=sf-menu><li class=current-menu-item><a href=/ aria-current=page><i class="fa fa-home"></i>&nbsp;首页</a></li><li><a href=/categories/%E7%8A%B6%E6%80%81.html><i class="fa fa-at"></i>&nbsp;状态</a></li><li><a href=javascript:;><i class="fa fa-folder-o"></i>&nbsp;分类</a><ul class=sub-menu><li><a href=/categories/code.html>Coding</a></li><li><a href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a href=/categories/%E7%AC%94%E8%AE%B0.html>笔记 <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/abc.html>abc</a></li><li><a href=/categories/cba.html>cba <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/cbaa.html>cbaa <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/cbaa.html>cbaac</a></li></ul></li></ul></li></ul></li><li><a href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li><li><a href=/categories/%E4%B8%8D%E5%88%86%E7%B1%BB.html>不分类</a></li></ul></li><li><a href=/z/projects.html><i class="fa fa-bug"></i>&nbsp;项目</a></li><li><a href=/z/links.html><i class="fa fa-mars"></i>&nbsp;友链</a></li><li><a href=/z/about.html><i class="fa fa-rocket"></i>&nbsp;关于</a></li></ul></nav></div></div></header></div><div class="kratos-start kratos-hero-2"><div class=kratos-overlay></div><div class="kratos-cover kratos-cover_2 text-center"><div class="desc desc2 animate-box"><a href=https://arae.cc/><h2>25H's Blog</h2><br><span>一个安静的角落</span></a></div></div></div><div id=kratos-blog-post style=background:#f5f5f5><div id=container class=container style=opacity:1><div class=row><section id=main class=col-md-8><article><div class="kratos-hentry kratos-post-inner clearfix"><header class=kratos-entry-header><h1 class="kratos-entry-title text-center">Markdown 语法整理</h1><div class="kratos-post-meta text-center"><span title="1970-01-01 01:00:00"><i class="fa fa-calendar"></i>&nbsp;1970年01月01日</span>
+<span><i class="fa fa-folder-o"></i>&nbsp;<a class=label href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></span><span title="文章字数： ≈ 2062 字"><i class="fa fa-file-word-o"></i>&nbsp;2.06k</span>
+<span title="阅读时长： ≈ 5 分钟"><i class="fa fa-clock-o"></i>&nbsp;≈5min</span>
+<span><i class="fa fa-user"></i>&nbsp;25H</span></div></header><div class=kratos-post-content><h3 id=概述>概述</h3><p>Markdown 的目标是实现「易读易写」。</p><p>可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，而最大灵感来源其实是纯文本电子邮件的格式。</p><p>总之， Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown 的列表看起来，嗯，就是列表。Markdown 的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p><hr><h3 id=标题>标题</h3><h4 id=code><em>Code</em></h4><pre><code># h1
+## h2
+### h3
+#### h4
+##### h5
+###### h6
+####### h7      // 错误代码
+######## h8     // 错误代码
+######### h9    // 错误代码
+########## h10  // 错误代码
+</code></pre><h4 id=demo><em>Demo</em></h4><p><em>注：h1最大，h6最小</em></p><p><img src=/upload/post/2018/20180207_141411.png alt=Demo></p><hr><h3 id=分级标题>分级标题</h3><h4 id=code-1><em>Code</em></h4><p><em>注：= - 最少可以只写一个，兼容性一般</em></p><pre><code>一级标题
+======================
+二级标题
+---------------------
+</code></pre><h4 id=demo-1><em>Demo</em></h4><p><img src=/upload/post/2018/20180207_142041.png alt=Demo></p><hr><h3 id=toc>TOC</h3><h4 id=code-2><em>Code</em></h4><p><em>注：根据标题生成目录，兼容性一般</em></p><pre><code>[TOC]
+</code></pre><h4 id=demo-2><em>Demo</em></h4><p><img src=/upload/post/2018/20180207_142445.png alt=Demo></p><hr><h3 id=引用>引用</h3><h4 id=code-3><em>Code</em></h4><pre><code>&gt; hello world!
+</code></pre><h4 id=demo-3><em>Demo</em></h4><blockquote><p>hello world!</p></blockquote><h4 id=code-2-多行式><em>Code-2 [多行式]</em></h4><pre><code>&gt; hello world!
+hello world!
+hello world!
+</code></pre><p><em>或者</em></p><pre><code>&gt; hello world!
+hello world!
+hello world!
+</code></pre><h4 id=demo-2-多行式><em>Demo-2 [多行式]</em></h4><p><em>结果相同</em></p><blockquote><p>hello world!<br>hello world!<br>hello world!</p></blockquote><h4 id=code-3-多层嵌套><em>Code-3 [多层嵌套]</em></h4><pre><code>&gt; aaaaaaaaa
+
+&gt;&gt; bbbbbbbbb
+
+&gt;&gt;&gt; cccccccccc
+</code></pre><h4 id=demo-3-多层嵌套><em>Demo-3 [多层嵌套]</em></h4><blockquote><p>aaaaaaaaa</p><blockquote><p>bbbbbbbbb</p><blockquote><p>cccccccccc</p></blockquote></blockquote></blockquote><h4 id=code-4-多层多个元素><em>Code-4 [多层多个元素]</em></h4><p><em>注：代码前 3个</em><code>TAB</code></p><pre><code>&gt; 列表例子：
+&gt;
+&gt; 1.   这是第一行列表项。
+&gt; 2.   这是第二行列表项。
+&gt;
+&gt; 代码例子：
+&gt; 
+&gt;          var num = 0;
+&gt;          for (var i = 0; i &lt; 5; i++) {
+&gt;               num+=i;
+&gt;           }
+&gt;           console.log(num);
+&gt;
+</code></pre><h4 id=demo-4-多层多个元素><em>Demo-4 [多层多个元素]</em></h4><blockquote><p>列表例子：</p><ol><li>这是第一行列表项。</li><li>这是第二行列表项。</li></ol><p>代码例子：</p><pre><code>     var num = 0;
+     for (var i = 0; i &lt; 5; i++) {
+          num+=i;
+      }
+      console.log(num);
+</code></pre></blockquote><hr><h3 id=行内标记>行内标记</h3><h4 id=code-4><em>Code</em></h4><p><em>注：用 ` 标记<strong>代码块将变成一行</strong></em></p><pre><code>标记之外`hello world`标记之外
+</code></pre><h4 id=demo-4><em>Demo</em></h4><p>标记之外<code>hello world</code>标记之外</p><h4 id=错误的代码><em>错误的代码</em></h4><p><em>注：不同平台错误略有差异</em></p><pre><code> 标记之外 ` 
+&lt;div&gt;   
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+`标记之外
+</code></pre><h4 id=错误演示><em>错误演示</em></h4><p>标记之外 <code>&lt;div&gt; &lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt; &lt;/div&gt;</code>标记之外</p><hr><h3 id=代码块>代码块</h3><p><em>注：与上行距离一空行</em></p><h4 id=code-1-1><em>Code-1 [~~~]</em></h4><p><em>注：用 <code>```</code> 生成块</em></p><pre><code>```html
+&lt;div&gt;   
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+```
+</code></pre><h4 id=demo-1-1><em>Demo-1 [~~~]</em></h4><pre><code class=language-html>&lt;div&gt;   
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h4 id=code-2-tab><em>Code-2 [Tab]</em></h4><p><em>注：</em> <kbd>Tab</kbd> <em>缩进</em></p><pre><code class=language-html>    &lt;div&gt;   
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+</code></pre><h4 id=demo-2-tab><em>Demo-2 [Tab]</em></h4><pre><code>&lt;div&gt;   
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h4 id=code-3-自定义语法><em>Code-3 [自定义语法]</em></h4><p><em>注：根据不同的语言配置不同的代码着色</em></p><pre><code>```javascript
+var num = 0;
+for (var i = 0; i &lt; 5; i++) {
+    num+=i;
+}
+console.log(num);
+```
+</code></pre><h4 id=demo-3-自定义语法><em>Demo-3 [自定义语法]</em></h4><pre><code class=language-javascript>var num = 0;
+for (var i = 0; i &lt; 5; i++) {
+    num+=i;
+}
+console.log(num);
+</code></pre><h4 id=支持的语言><em>支持的语言</em></h4><table><thead><tr><th align=left>名称</th><th align=left>关键字</th></tr></thead><tbody><tr><td align=left>AppleScript</td><td align=left>applescript</td></tr><tr><td align=left>ActionScript 3.0</td><td align=left>actionscript3 , as3</td></tr><tr><td align=left>Shell</td><td align=left>bash , shell</td></tr><tr><td align=left>ColdFusion</td><td align=left>coldfusion , cf</td></tr><tr><td align=left>C</td><td align=left>cpp , c</td></tr><tr><td align=left>C#</td><td align=left>c# , c-sharp , csharp</td></tr><tr><td align=left>CSS</td><td align=left>css</td></tr><tr><td align=left>Delphi</td><td align=left>delphi , pascal , pas</td></tr><tr><td align=left>diff&amp;patch</td><td align=left>diff patch</td></tr><tr><td align=left>Erlang</td><td align=left>erl , erlang</td></tr><tr><td align=left>Groovy</td><td align=left>groovy</td></tr><tr><td align=left>Java</td><td align=left>java</td></tr><tr><td align=left>JavaFX</td><td align=left>jfx , javafx</td></tr><tr><td align=left>JavaScript</td><td align=left>js , jscript , javascript</td></tr><tr><td align=left>Perl</td><td align=left>perl , pl , Perl</td></tr><tr><td align=left>PHP</td><td align=left>php</td></tr><tr><td align=left>text</td><td align=left>text , plain</td></tr><tr><td align=left>Python</td><td align=left>py , python</td></tr><tr><td align=left>Ruby</td><td align=left>ruby , rails , ror , rb</td></tr><tr><td align=left>SASS&amp;SCSS</td><td align=left>sass , scss</td></tr><tr><td align=left>Scala</td><td align=left>scala</td></tr><tr><td align=left>SQL</td><td align=left>sql</td></tr><tr><td align=left>Visual Basic</td><td align=left>vb , vbnet</td></tr><tr><td align=left>XML</td><td align=left>xml , xhtml , xslt , html</td></tr><tr><td align=left>Objective C</td><td align=left>objc , obj-c</td></tr><tr><td align=left>F#</td><td align=left>f# f-sharp , fsharp</td></tr><tr><td align=left>R</td><td align=left>r , s , splus</td></tr><tr><td align=left>matlab</td><td align=left>matlab</td></tr><tr><td align=left>swift</td><td align=left>swift</td></tr><tr><td align=left>GO</td><td align=left>go , golang</td></tr></tbody></table><hr><h3 id=插入链接>插入链接</h3><h4 id=code-1-内链式><em>Code-1 [内链式]</em></h4><pre><code>This is [an example](http://arae.cc/ &quot;Title&quot;) inline link.
+[This link](http://arae.cc/) has no title attribute.
+</code></pre><h4 id=demo-1-内链式><em>Demo-1 [内链式]</em></h4><p>This is <a href=http://arae.cc/ title=Title rel=nofollow target=_blank>an example</a> inline link.
+<a href=http://arae.cc/ rel=nofollow target=_blank>This link</a> has no title attribute.</p><h4 id=code-2-引用式><em>Code-2 [引用式]</em></h4><pre><code>[1]: http://arae.cc/
+[2]: http://arae.cc/  &quot;Optional Title Here&quot;
+[3]: http://arae.cc/  (Optional Title Here)
+[4]: &lt;http://arae.cc/&gt;  &quot;Optional Title Here&quot;
+[example]: http://arae.cc/
+[example-1]: http://arae.cc/
+[example-2]: http://arae.cc/  &quot;Optional Title Here [example-2]&quot;
+</code></pre><h4 id=demo-2-引用式><em>Demo-2 [引用式]</em></h4><table><thead><tr><th align=left>演示</th><th align=left>调用方式</th></tr></thead><tbody><tr><td align=left><a href=http://arae.cc/ rel=nofollow target=_blank>example 1</a></td><td align=left>[example 1] [1]</td></tr><tr><td align=left><a href=http://arae.cc/ title="Optional Title Here [2]" rel=nofollow target=_blank>example 2</a></td><td align=left>[example 2] [2]</td></tr><tr><td align=left><a href=http://arae.cc/ title="Optional Title Here [3]" rel=nofollow target=_blank>example 3</a></td><td align=left>[example 3] [3]</td></tr><tr><td align=left><a href=http://arae.cc/&gt; title="Optional Title Here [4]" rel=nofollow target=_blank>example 4</a></td><td align=left>[example 4] [4]</td></tr><tr><td align=left><a href=http://arae.cc/ rel=nofollow target=_blank>example</a></td><td align=left>[example] []</td></tr><tr><td align=left><a href=http://arae.cc/ rel=nofollow target=_blank>example-1</a></td><td align=left>[example-1] []</td></tr><tr><td align=left><a href=http://arae.cc/ title="Optional Title Here [example-2]" rel=nofollow target=_blank>example-2</a></td><td align=left>[example-2] []</td></tr></tbody></table><hr><h3 id=插入图片>插入图片</h3><h4 id=code-1-内链式-1><em>Code-1 [内链式]</em></h4><pre><code>![](/01.png)
+![](/01.png &quot;描述&quot;)
+![Alt text](/01.png &quot;描述&quot;)
+</code></pre><h4 id=demo-1-内链式-1><em>Demo-1 [内链式]</em></h4><p><img src=/upload/post/2018/20180214_145058.png alt=Demo title=Demo></p><h4 id=code-2-引用式-1><em>Code-2 [引用式]</em></h4><pre><code>![name][01]
+[01]: /01.png &quot;Demo&quot;
+</code></pre><h4 id=demo-2-引用式-1><em>Demo-2 [引用式]</em></h4><p><img src=/upload/post/2018/20180214_145058.png alt=Demo title=Demo></p><hr><h3 id=视频插入>视频插入</h3><p>Markdown 语法是不支持直接插入视频的<br>普遍的做法是 插入HTML的 iframe 框架，通过网站自带的分享功能获取，如果没有可以尝试第二种方法<br>第二是伪造播放界面，实质是插入视频图片，然后通过点击跳转到相关页面<br><em>注：多数第三方平台不支持插入<code>&lt;iframe&gt;</code>视频</em></p><hr><h3 id=列表>列表</h3><h4 id=code-1-有序><em>Code-1 [有序]</em></h4><p><em>注：.后 保持空格</em></p><pre><code>1. one
+2. two
+3. three
+</code></pre><h4 id=demo-1-有序><em>Demo-1 [有序]</em></h4><ol><li>one</li><li>two</li><li>three</li></ol><h4 id=code-2-无序><em>Code-2 [无序]</em></h4><pre><code>* one
+* two
+* three
+</code></pre><h4 id=demo-2-无序><em>Demo-2 [无序]</em></h4><ul><li>one</li><li>two</li><li>three</li></ul><h4 id=code-3-嵌套><em>Code-3 [嵌套]</em></h4><pre><code>1. one
+    1. one-1
+    2. two-2
+2. two 
+    * two-1
+    * two-2
+</code></pre><h4 id=demo-3-嵌套><em>Demo-3 [嵌套]</em></h4><ol><li>one<ol><li>one-1</li><li>two-2</li></ol></li><li>two<ul><li>two-1</li><li>two-2</li></ul></li></ol><h4 id=code-4-嵌套代码块><em>Code-4 [嵌套代码块]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>* one
+
+        var a = 10;     // 与上行保持空行并 递进缩进
+* two
+        var b = 20;     // 与上行保持空行并 递进缩进
+</code></pre><h4 id=demo-4-嵌套代码块><em>Demo-4 [嵌套代码块]</em></h4><ul><li><p>one</p><pre><code>var a = 10;     // 与上行保持空行并 递进缩进
+</code></pre></li><li><p>two
+var b = 20; // 与上行保持空行并 递进缩进</p></li></ul><h4 id=code-5-嵌套引用><em>Code-5 [嵌套引用]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>*   one
+
+    &gt; one
+    &gt; two
+</code></pre><h4 id=demo-5-嵌套引用><em>Demo-5 [嵌套引用]</em></h4><ul><li><p>one</p><blockquote><p>one
+two</p></blockquote></li></ul><hr><h3 id=表格>表格</h3><h4 id=code-1-普通><em>Code-1 [普通]</em></h4><p>注： <code>:</code> 代表对齐方式 , <strong><code>:</code> 与 <code>|</code> 之间不要有空格</strong>，否则对齐会有些不兼容</p><pre><code>|    a    |       b       |      c     |
+|:-------:|:------------- | ----------:|
+|   居中  |     左对齐     |   右对齐   |
+
+|    a    |       b       |      c     |
+|---------|---------------|------------|
+|  左对齐 |     左对齐     |   左对齐   |
+
+</code></pre><h4 id=demo-1-普通><em>Demo-1 [普通]</em></h4><table><thead><tr><th align=center>a</th><th align=left>b</th><th align=right>c</th></tr></thead><tbody><tr><td align=center>居中</td><td align=left>左对齐</td><td align=right>右对齐</td></tr></tbody></table><table><thead><tr><th>a</th><th>b</th><th>c</th></tr></thead><tbody><tr><td>左对齐</td><td>左对齐</td><td>左对齐</td></tr></tbody></table><h4 id=code-2-简约写法><em>Code-2 [简约写法]</em></h4><pre><code>a  | b | c  
+:-:|:- |-:
+    居中    |     左对齐      |   右对齐   
+</code></pre><h4 id=demo-2-简约写法><em>Demo-2 [简约写法]</em></h4><table><thead><tr><th align=center>a</th><th align=left>b</th><th align=right>c</th></tr></thead><tbody><tr><td align=center>居中</td><td align=left>左对齐</td><td align=right>右对齐</td></tr></tbody></table><hr><h3 id=内嵌css样式>内嵌CSS样式</h3><h4 id=code-5><em>Code</em></h4><pre><code class=language-html>&lt;b style=&quot;color: #AD5D0F;font-size: 30px; font-family: '宋体';&quot;&gt;内联样式&lt;/b&gt;
+</code></pre><h4 id=demo-5><em>Demo</em></h4><p><b style=color:#ad5d0f;font-size:30px;font-family:宋体>内联样式</b></p><hr><h3 id=语义标记>语义标记</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>*斜体*</td></tr><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>_斜体_</td></tr><tr><td align=left>加粗</td><td align=left><strong>加粗</strong></td><td align=left>**加粗**</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>***加粗+斜体***</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>**<em>加粗+斜体</em>**</td></tr><tr><td align=left>删除线</td><td align=left><del>删除线</del></td><td align=left>~~删除线~~</td></tr></tbody></table><hr><h3 id=语义标签>语义标签</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><i>斜体</i></td><td align=left><code>&lt;i&gt;斜体&lt;/i&gt;</code></td></tr><tr><td align=left>加粗</td><td align=left><b>加粗</b></td><td align=left><code>&lt;b&gt;加粗&lt;/b&gt;</code></td></tr><tr><td align=left>强调</td><td align=left><em>强调</em></td><td align=left><code>&lt;em&gt;强调&lt;/em&gt;</code></td></tr><tr><td align=left>上标</td><td align=left>Z<sup>a</sup></td><td align=left><code>Z&lt;sup&gt;a&lt;/sup&gt;</code></td></tr><tr><td align=left>下标</td><td align=left>Z<sub>a</sub></td><td align=left><code>Z&lt;sub&gt;a&lt;/sub&gt;</code></td></tr><tr><td align=left>键代码</td><td align=left><kbd>Ctrl</kbd></td><td align=left><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;</code></td></tr><tr><td align=left>换行</td><td align=left></td><td align=left></td></tr></tbody></table><hr><h3 id=分隔符>分隔符</h3><h4 id=code-6><em>Code</em></h4><p><em>注：最少三个 <code>---</code> 或 <code>***</code> 或 <code>* * *</code>
+你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。</em></p><pre><code>* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+</code></pre><h4 id=demo-6><em>Demo</em></h4><hr><hr><hr><hr><hr><p><em>Demo end</em></p><hr><h3 id=自动链接>自动链接</h3><h4 id=code-7><em>Code</em></h4><p><em>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用<code>&lt;&gt;</code>;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样</em></p><pre><code>&lt;http://arae.cc/&gt;
+&lt;example@arae.cc&gt;
+</code></pre><h4 id=demo-7><em>Demo</em></h4><p><a href=http://arae.cc/ rel=nofollow target=_blank>http://arae.cc/</a>
+<a href=mailto:example@arae.cc rel=nofollow target=_blank>example@arae.cc</a></p><hr></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+<a href=/tags/markdown.html rel=tag>Markdown</a>
+<a href=/tags/%E8%AF%AD%E6%B3%95.html rel=tag>语法</a>
+<a href=/tags/code.html rel=tag>Code</a>
+<a href=/tags/demo.html rel=tag>Demo</a></div><div class=pull-date></div></div></footer></div><nav class="navigation post-navigation clearfix" role=navigation><div class="nav-previous clearfix"><a title="状态 - 25801" href=/t/25801.html>&lt; 上一篇</a></div><div class=nav-next><a title="Hello World" href=/post/25642.html>下一篇 &gt;</a></div></nav><div id=comments class=comments-area><div id=comments-body data-pid=/post/25645.html><p class=mClose>评论功能被我吃了。</p></div></div></article></section><aside id=kratos-widget-area class="col-md-4 hidden-xs hidden-sm scrollspy"><div id=sidebar class=affix-top><aside class="widget widget_kratos_about clearfix"><div class=photo-background></div><div class="photo-wrapper clearfix"><div class="photo-wrapper-tip text-center"><a href=javascript:;><img class=about-photo src=/images/avatar.png alt=25H></a></div></div><div class=textwidget><p class=text-center><span style=font-size:10pt>五米雌雄同体，十米人畜不分。</span></p></div></aside><aside class="widget widget_categories clearfix"><h4 class=widget-title>分类目录</h4><ul><li><a title=code href=/categories/code.html>code</a></li><li><a title=不分类 href=/categories/%E4%B8%8D%E5%88%86%E7%B1%BB.html>不分类</a></li><li><a title=作品 href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a title=状态 href=/categories/%E7%8A%B6%E6%80%81.html>状态</a></li><li><a title=笔记 href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a title=转载 href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li></ul></aside><aside id=kratos_ad-2 class="widget widget_kratos_ad clearfix"><a href=/z/about.html#打赏-赞助><img class="carousel-inner img-responsive img-rounded" src=/images/rw.jpg></a></aside></div></aside></div></div></div><footer><div id=footer style=background:#23282d><div class=container><div class=row><div class="col-md-6 col-md-offset-3 footer-list text-center"><p class=kratos-social-icons></p><p>© 2019 <a href=https://arae.cc/>ARAE</a>. All Rights Reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank rel=nofollow>Hugo</a> Hosted by <a href=https://pages.github.com target=_blank rel=nofollow>Github Pages</a><br>Theme <a href=https://arae.cc/>Rolla</a> Made by <a href=https://moedog.org/ target=_blank rel=nofollow>Moedog</a> Modified by <a href=https://arae.cc/>25H</a></p></div></div></div><div class="cd-tool text-center"><div class="gotop-box active"><div class=gotop-btn><span class="fa fa-chevron-up"></span></div></div><div class=search-box><span class="fa fa-search"></span><form class=search-form id=searchform target=_blank role=search><input type=text name=wd id=search placeholder=Search... style=display:none></form></div></div></div></footer></div></div></body></html>

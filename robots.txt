@@ -1,0 +1,21 @@
+# Update
+# 2019-8-25 07:58
+
+User-agent: *
+
+# 目录
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /upload/
+
+# 文件
+Disallow: /*.json
+
+# 页面
+Disallow: /404.html
+Disallow: /emlist.html
+
+# SiteMap
+Sitemap: http://arae.cc/sitemap.xml

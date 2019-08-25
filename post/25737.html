@@ -1,0 +1,43 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=generator content="Hugo 0.57.2"><meta name=description content="时钟组件 作为定时器 系统会在设定时间发送 WM_TIMER 消息给消息队列，因为事件处理函数和窗口回调函数都是同线程， 在一个消息未处理完返回之前是不能处理其他事件消息的，也就是一个时钟事件函数未执行完返回之前，系统是不会发送下一个 WM_TIMER 消息到消息队列中的，所以第二个WM_TIMER …"><title>时钟事件执行时间超出时钟周期问题解释 - ARAE</title><link rel=canonical href=https://arae.cc/post/25737.html><link rel=icon href=/images/favicon.png><link rel=stylesheet href="https://arae.cc/css/font-awesome.min.css?ver=4.7.0"><link rel=stylesheet href="https://arae.cc/css/kratos.min.css?ver=0.4.0"><link rel=stylesheet href=https://arae.cc/css/styles.css><script src=https://arae.cc/js/jquery.min.js></script><script src="https://arae.cc/js/theme.min.js?ver=0.4.0"></script><script src="https://arae.cc/js/kratos.js?ver=0.4.0"></script><script src="https://arae.cc/js/pjax.js?ver=0.4.0"></script><script src=https://arae.cc/js/main.js></script></head><body><div id=kratos-wrapper><div id=kratos-page><div id=kratos-header><header id=kratos-header-section><div class=container><div class=nav-header><nav id=kratos-menu-wrap class=menu-main-container><ul id=kratos-primary-menu class=sf-menu><li class=current-menu-item><a href=/ aria-current=page><i class="fa fa-home"></i>&nbsp;首页</a></li><li><a href=/categories/%E7%8A%B6%E6%80%81.html><i class="fa fa-at"></i>&nbsp;状态</a></li><li><a href=javascript:;><i class="fa fa-folder-o"></i>&nbsp;分类</a><ul class=sub-menu><li><a href=/categories/code.html>Coding</a></li><li><a href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a href=/categories/%E7%AC%94%E8%AE%B0.html>笔记 <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/abc.html>abc</a></li><li><a href=/categories/cba.html>cba <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/cbaa.html>cbaa <i class="fa fa-angle-right itemChildrenR"></i></a><ul class=sub-menu><li><a href=/categories/cbaa.html>cbaac</a></li></ul></li></ul></li></ul></li><li><a href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li><li><a href=/categories/%E4%B8%8D%E5%88%86%E7%B1%BB.html>不分类</a></li></ul></li><li><a href=/z/projects.html><i class="fa fa-bug"></i>&nbsp;项目</a></li><li><a href=/z/links.html><i class="fa fa-mars"></i>&nbsp;友链</a></li><li><a href=/z/about.html><i class="fa fa-rocket"></i>&nbsp;关于</a></li></ul></nav></div></div></header></div><div class="kratos-start kratos-hero-2"><div class=kratos-overlay></div><div class="kratos-cover kratos-cover_2 text-center"><div class="desc desc2 animate-box"><a href=https://arae.cc/><h2>25H's Blog</h2><br><span>一个安静的角落</span></a></div></div></div><div id=kratos-blog-post style=background:#f5f5f5><div id=container class=container style=opacity:1><div class=row><section id=main class=col-md-8><article><div class="kratos-hentry kratos-post-inner clearfix"><header class=kratos-entry-header><h1 class="kratos-entry-title text-center">时钟事件执行时间超出时钟周期问题解释</h1><div class="kratos-post-meta text-center"><span title="2016-07-21 14:13:58"><i class="fa fa-calendar"></i>&nbsp;2016年07月21日</span>
+<span><i class="fa fa-folder-o"></i>&nbsp;<a class=label href=/categories/code.html>Code</a></span><span title="文章字数： ≈ 1006 字"><i class="fa fa-file-word-o"></i>&nbsp;1.01k</span>
+<span title="阅读时长： ≈ 3 分钟"><i class="fa fa-clock-o"></i>&nbsp;≈3min</span>
+<span><i class="fa fa-user"></i>&nbsp;25H</span></div></header><div class=kratos-post-content><p>时钟组件 作为定时器 系统会在设定时间发送 WM_TIMER 消息给消息队列，因为事件处理函数和窗口回调函数都是同线程， 在一个消息未处理完返回之前是不能处理其他事件消息的，也就是一个时钟事件函数未执行完返回之前，系统是不会发送下一个 WM_TIMER 消息到消息队列中的，所以第二个WM_TIMER消息也就是会被忽略掉。</p><p>将时钟周期设置为500</p><p>1.下面这个例子你会发现 a 和b是同步的数值是相等的就是这个道理</p><pre><code>.局部变量 a, 整数型, 静态
+.局部变量 b, 整数型, 静态
+
+a ＝ a ＋ 1
+调试输出 (“a”, a)
+延时 (1000)
+b ＝ b ＋ 1
+调试输出 (“b”, b)
+</code></pre><p>2.第二个例子很有意思，你会发现程序一直在输出a ，而没有输出b，呵呵，你来猜猜是什么原因？</p><pre><code>.局部变量 a, 整数型, 静态  
+.局部变量 b, 整数型, 静态  
+  
+  
+a ＝ a ＋ 1  
+调试输出 (“a”, a)  
+延迟 (1000)  
+b ＝ b ＋ 1  
+调试输出 (“b”, b)  
+</code></pre><p>第二个例子 和第一个例子的区别是把延时（）换成了延迟（），想来看看这两个命令的作用和区别，他们的区别一个是相当于暂停当前线程向下执行，等待设定长时间后在向下执行，但并不处理事件消息；</p><p>另一个是在等待中并且处理事件消息。那么为什么会出现这样的结果呢，首先来看一下延迟（）命令 他是在等待中处理消息队列中未决的消息，那么WM_TEMER也作为一个消息队列中的消息，所以延迟（）</p><p>当然责无旁贷需要处理掉，那么他是怎么处理的呢，无非是需要用到 PeekMessage (lpMsg, 0, 0, 0,PM_REMOVE) TranslateMessage (lpMsg) DispatchMessage (lpMsg) 自然是会在消息从消息队列中删除掉，也就是给了程序一个假象，表示上一次WM_TIMER消息已经处理完可以接收下一个，延迟（）命令执行了1000毫秒完毕以后 正常该继续执行 b=b+1 并 调试输出 () 结果 ，可延迟（）还没有执行完毕，因为在他执行的过程当中新的WM_TIMER 又来了，这个时候程序会怎么走呢？当延迟（）命令还在执行当中，他会把进程未决的消息先依次处理，而在这期间收到的WM_TIMER都会被得到处理并执行，而每次延迟（）命令会是这样的遭遇，于是乎就有了这样的结果，那么会这样一个问题，延迟（）命令下面的代码会不会被执行呢？答案是肯定的，可他永远没有机会被执行，除非延迟（）命令成功执行完毕，可他永远不会执行完毕。在一个因为只压栈不弹栈，执行一会程序就会出错，栈溢出。。。。程序崩溃告终。</p><pre><code>.版本 2
+.支持库 spec
+
+
+.子程序 __启动窗口_创建完毕
+
+
+时钟1.时钟周期 ＝ 1  ' 为了加快这里设置为1
+
+
+.子程序 _时钟1_周期事件
+.局部变量 a, 整数型, 静态
+.局部变量 b, 整数型, 静态
+
+
+a ＝ a ＋ 1
+延迟 (5000)
+b ＝ b ＋ 1
+信息框 (a ＋ b, 0, )
+</code></pre></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+<a href=/tags/%E6%98%93%E8%AF%AD%E8%A8%80.html rel=tag>易语言</a>
+<a href=/tags/%E6%BA%90%E7%A0%81.html rel=tag>源码</a>
+<a href=/tags/code.html rel=tag>Code</a></div><div class=pull-date></div></div></footer></div><nav class="navigation post-navigation clearfix" role=navigation><div class="nav-previous clearfix"><a title=EIDE助手（易语言支持库） href=/post/25762.html>&lt; 上一篇</a></div><div class=nav-next><a title=程序猿专用代码注释:佛祖保佑，永无BUG href=/post/25736.html>下一篇 &gt;</a></div></nav><div id=comments class=comments-area><div id=comments-body data-pid=/post/25737.html><p class=mClose>评论功能被我吃了。</p></div></div></article></section><aside id=kratos-widget-area class="col-md-4 hidden-xs hidden-sm scrollspy"><div id=sidebar class=affix-top><aside class="widget widget_kratos_about clearfix"><div class=photo-background></div><div class="photo-wrapper clearfix"><div class="photo-wrapper-tip text-center"><a href=javascript:;><img class=about-photo src=/images/avatar.png alt=25H></a></div></div><div class=textwidget><p class=text-center><span style=font-size:10pt>五米雌雄同体，十米人畜不分。</span></p></div></aside><aside class="widget widget_categories clearfix"><h4 class=widget-title>分类目录</h4><ul><li><a title=code href=/categories/code.html>code</a></li><li><a title=不分类 href=/categories/%E4%B8%8D%E5%88%86%E7%B1%BB.html>不分类</a></li><li><a title=作品 href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a title=状态 href=/categories/%E7%8A%B6%E6%80%81.html>状态</a></li><li><a title=笔记 href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a title=转载 href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li></ul></aside><aside id=kratos_ad-2 class="widget widget_kratos_ad clearfix"><a href=/z/about.html#打赏-赞助><img class="carousel-inner img-responsive img-rounded" src=/images/rw.jpg></a></aside></div></aside></div></div></div><footer><div id=footer style=background:#23282d><div class=container><div class=row><div class="col-md-6 col-md-offset-3 footer-list text-center"><p class=kratos-social-icons></p><p>© 2019 <a href=https://arae.cc/>ARAE</a>. All Rights Reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank rel=nofollow>Hugo</a> Hosted by <a href=https://pages.github.com target=_blank rel=nofollow>Github Pages</a><br>Theme <a href=https://arae.cc/>Rolla</a> Made by <a href=https://moedog.org/ target=_blank rel=nofollow>Moedog</a> Modified by <a href=https://arae.cc/>25H</a></p></div></div></div><div class="cd-tool text-center"><div class="gotop-box active"><div class=gotop-btn><span class="fa fa-chevron-up"></span></div></div><div class=search-box><span class="fa fa-search"></span><form class=search-form id=searchform target=_blank role=search><input type=text name=wd id=search placeholder=Search... style=display:none></form></div></div></div></footer></div></div></body></html>
