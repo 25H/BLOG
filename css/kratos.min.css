@@ -3074,8 +3074,17 @@ textarea {
 	font-size: 15px
 }
 
+.widget_kratos_tags {
+	max-height: 400px;
+}
+
 .widget_kratos_tags .widget-title::after {
 	height:2px !important;
+}
+
+.widget_kratos_tags .tag_clouds {
+	height: calc(400px - 50px - (15px * 2));
+    overflow: auto;
 }
 
 .widget_kratos_tags .tag_clouds a {
