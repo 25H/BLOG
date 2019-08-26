@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 
 @-ms-viewport {
 	width:device-width
@@ -1979,6 +1979,20 @@ textarea {
 }
 
 /*------------------------- 短代码 END ----------------------------*/
+
+.kratos-post-content ul.task-list>li:hover {
+	background-color: #eee;
+}
+
+.kratos-post-content ul.task-list>li>label {
+	font-weight: 500;
+	padding: 0 0 0 5px;
+	margin: 0;
+}
+
+.kratos-post-content ul.task-list>li>label>input {
+	cursor: default;
+}
 
 
 #kratos-wrapper {
