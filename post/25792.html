@@ -37,9 +37,7 @@
   console.log(Array.isArray(arr));  //true
   console.log(Array.isArray(obj));  //false
   //注意没有isObject这种方法   暂时
-</code></pre><h3 id=方法五>方法五</h3><p>使用isPrototypeOf()函数</p><p>原理：检测一个对象是否是Array的原型（或处于原型链中，不但可检测直接父对象，还可检测整个原型链上的所有父对象）
-使用方法: parent.isPrototypeOf(child)来检测parent是否为child的原型;
-需注意的是isPrototypeOf()函数实现的功能和instancof运算符非常类似；</p><pre><code class=language-js>  var arr=[2,3,4,&quot;haa&quot;];
+</code></pre><h3 id=方法五>方法五</h3><p>使用isPrototypeOf()函数</p><p>原理：检测一个对象是否是Array的原型（或处于原型链中，不但可检测直接父对象，还可检测整个原型链上的所有父对象）<br>使用方法: parent.isPrototypeOf(child)来检测parent是否为child的原型;<br>需注意的是isPrototypeOf()函数实现的功能和instancof运算符非常类似；</p><pre><code class=language-js>  var arr=[2,3,4,&quot;haa&quot;];
   var object={&quot;name&quot;:&quot;maomao&quot;,&quot;age&quot;:20};
   console.log(Array.prototype.isPrototypeOf(arr));    //true
   console.log(Array.prototype.isPrototypeOf(object)); //false

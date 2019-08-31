@@ -41,7 +41,7 @@ hello world!
 &gt;           }
 &gt;           console.log(num);
 &gt;
-</code></pre><h4 id=demo-4-多层多个元素><em>Demo-4 [多层多个元素]</em></h4><blockquote><p>列表例子：</p><ol><li>这是第一行列表项。</li><li>这是第二行列表项。</li></ol><p>代码例子：</p><pre><code>     var num = 0;
+</code></pre><h4 id=demo-4-多层多个元素><em>Demo-4 [多层多个元素]</em></h4><blockquote><p>列表例子：</p><ol><li>这是第一行列表项。<br></li><li>这是第二行列表项。<br><br></li></ol><p>代码例子：</p><pre><code>     var num = 0;
      for (var i = 0; i &lt; 5; i++) {
           num+=i;
       }
@@ -90,8 +90,7 @@ for (var i = 0; i &lt; 5; i++) {
 console.log(num);
 </code></pre><h4 id=支持的语言><em>支持的语言</em></h4><table><thead><tr><th align=left>名称</th><th align=left>关键字</th></tr></thead><tbody><tr><td align=left>AppleScript</td><td align=left>applescript</td></tr><tr><td align=left>ActionScript 3.0</td><td align=left>actionscript3 , as3</td></tr><tr><td align=left>Shell</td><td align=left>bash , shell</td></tr><tr><td align=left>ColdFusion</td><td align=left>coldfusion , cf</td></tr><tr><td align=left>C</td><td align=left>cpp , c</td></tr><tr><td align=left>C#</td><td align=left>c# , c-sharp , csharp</td></tr><tr><td align=left>CSS</td><td align=left>css</td></tr><tr><td align=left>Delphi</td><td align=left>delphi , pascal , pas</td></tr><tr><td align=left>diff&amp;patch</td><td align=left>diff patch</td></tr><tr><td align=left>Erlang</td><td align=left>erl , erlang</td></tr><tr><td align=left>Groovy</td><td align=left>groovy</td></tr><tr><td align=left>Java</td><td align=left>java</td></tr><tr><td align=left>JavaFX</td><td align=left>jfx , javafx</td></tr><tr><td align=left>JavaScript</td><td align=left>js , jscript , javascript</td></tr><tr><td align=left>Perl</td><td align=left>perl , pl , Perl</td></tr><tr><td align=left>PHP</td><td align=left>php</td></tr><tr><td align=left>text</td><td align=left>text , plain</td></tr><tr><td align=left>Python</td><td align=left>py , python</td></tr><tr><td align=left>Ruby</td><td align=left>ruby , rails , ror , rb</td></tr><tr><td align=left>SASS&amp;SCSS</td><td align=left>sass , scss</td></tr><tr><td align=left>Scala</td><td align=left>scala</td></tr><tr><td align=left>SQL</td><td align=left>sql</td></tr><tr><td align=left>Visual Basic</td><td align=left>vb , vbnet</td></tr><tr><td align=left>XML</td><td align=left>xml , xhtml , xslt , html</td></tr><tr><td align=left>Objective C</td><td align=left>objc , obj-c</td></tr><tr><td align=left>F#</td><td align=left>f# f-sharp , fsharp</td></tr><tr><td align=left>R</td><td align=left>r , s , splus</td></tr><tr><td align=left>matlab</td><td align=left>matlab</td></tr><tr><td align=left>swift</td><td align=left>swift</td></tr><tr><td align=left>GO</td><td align=left>go , golang</td></tr></tbody></table><hr><h3 id=插入链接>插入链接</h3><h4 id=code-1-内链式><em>Code-1 [内链式]</em></h4><pre><code>This is [an example](http://arae.cc/ &quot;Title&quot;) inline link.
 [This link](http://arae.cc/) has no title attribute.
-</code></pre><h4 id=demo-1-内链式><em>Demo-1 [内链式]</em></h4><p>This is <a href=http://arae.cc/ title=Title rel=nofollow target=_blank>an example</a> inline link.
-<a href=http://arae.cc/ rel=nofollow target=_blank>This link</a> has no title attribute.</p><h4 id=code-2-引用式><em>Code-2 [引用式]</em></h4><pre><code>[1]: http://arae.cc/
+</code></pre><h4 id=demo-1-内链式><em>Demo-1 [内链式]</em></h4><p>This is <a href=http://arae.cc/ title=Title rel=nofollow target=_blank>an example</a> inline link.<br><a href=http://arae.cc/ rel=nofollow target=_blank>This link</a> has no title attribute.</p><h4 id=code-2-引用式><em>Code-2 [引用式]</em></h4><pre><code>[1]: http://arae.cc/
 [2]: http://arae.cc/  &quot;Optional Title Here&quot;
 [3]: http://arae.cc/  (Optional Title Here)
 [4]: &lt;http://arae.cc/&gt;  &quot;Optional Title Here&quot;
@@ -106,32 +105,30 @@ console.log(num);
 </code></pre><h4 id=demo-2-引用式-1><em>Demo-2 [引用式]</em></h4><p><img src=/upload/post/2018/20180214_145058.png alt=Demo title=Demo></p><hr><h3 id=视频插入>视频插入</h3><p>Markdown 语法是不支持直接插入视频的<br>普遍的做法是 插入HTML的 iframe 框架，通过网站自带的分享功能获取，如果没有可以尝试第二种方法<br>第二是伪造播放界面，实质是插入视频图片，然后通过点击跳转到相关页面<br><em>注：多数第三方平台不支持插入<code>&lt;iframe&gt;</code>视频</em></p><hr><h3 id=列表>列表</h3><h4 id=code-1-有序><em>Code-1 [有序]</em></h4><p><em>注：.后 保持空格</em></p><pre><code>1. one
 2. two
 3. three
-</code></pre><h4 id=demo-1-有序><em>Demo-1 [有序]</em></h4><ol><li>one</li><li>two</li><li>three</li></ol><h4 id=code-2-无序><em>Code-2 [无序]</em></h4><pre><code>* one
+</code></pre><h4 id=demo-1-有序><em>Demo-1 [有序]</em></h4><ol><li>one<br></li><li>two<br></li><li>three<br><br></li></ol><h4 id=code-2-无序><em>Code-2 [无序]</em></h4><pre><code>* one
 * two
 * three
-</code></pre><h4 id=demo-2-无序><em>Demo-2 [无序]</em></h4><ul><li>one</li><li>two</li><li>three</li></ul><h4 id=code-3-嵌套><em>Code-3 [嵌套]</em></h4><pre><code>1. one
+</code></pre><h4 id=demo-2-无序><em>Demo-2 [无序]</em></h4><ul><li>one<br></li><li>two<br></li><li>three<br><br></li></ul><h4 id=code-3-嵌套><em>Code-3 [嵌套]</em></h4><pre><code>1. one
     1. one-1
     2. two-2
 2. two 
     * two-1
     * two-2
-</code></pre><h4 id=demo-3-嵌套><em>Demo-3 [嵌套]</em></h4><ol><li>one<ol><li>one-1</li><li>two-2</li></ol></li><li>two<ul><li>two-1</li><li>two-2</li></ul></li></ol><h4 id=code-4-嵌套代码块><em>Code-4 [嵌套代码块]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>* one
+</code></pre><h4 id=demo-3-嵌套><em>Demo-3 [嵌套]</em></h4><ol><li>one<br><ol><li>one-1<br></li><li>two-2<br></li></ol></li><li>two<br><ul><li>two-1<br></li><li>two-2<br><br></li></ul></li></ol><h4 id=code-4-嵌套代码块><em>Code-4 [嵌套代码块]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>* one
 
         var a = 10;     // 与上行保持空行并 递进缩进
 * two
         var b = 20;     // 与上行保持空行并 递进缩进
 </code></pre><h4 id=demo-4-嵌套代码块><em>Demo-4 [嵌套代码块]</em></h4><ul><li><p>one</p><pre><code>var a = 10;     // 与上行保持空行并 递进缩进
-</code></pre></li><li><p>two
-var b = 20; // 与上行保持空行并 递进缩进</p></li></ul><h4 id=code-5-嵌套引用><em>Code-5 [嵌套引用]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>*   one
+</code></pre></li><li><p>two<br>var b = 20; // 与上行保持空行并 递进缩进</p></li></ul><h4 id=code-5-嵌套引用><em>Code-5 [嵌套引用]</em></h4><p><em>注：换行+两个</em> <kbd>Tab</kbd></p><pre><code>*   one
 
     &gt; one
     &gt; two
-</code></pre><h4 id=demo-5-嵌套引用><em>Demo-5 [嵌套引用]</em></h4><ul><li><p>one</p><blockquote><p>one
-two</p></blockquote></li></ul><hr><h3 id=任务列表>任务列表</h3><h4 id=code-1-普通><em>Code-1 [普通]</em></h4><pre><code>* [ ] a task list item
+</code></pre><h4 id=demo-5-嵌套引用><em>Demo-5 [嵌套引用]</em></h4><ul><li><p>one</p><blockquote><p>one<br>two</p></blockquote></li></ul><hr><h3 id=任务列表>任务列表</h3><h4 id=code-1-普通><em>Code-1 [普通]</em></h4><pre><code>* [ ] a task list item
 * [ ] list syntax required
 * [ ] incomplete
 * [x] completed
-</code></pre><h4 id=demo-1-普通><em>Demo-1 [普通]</em></h4><ul class=task-list><li><label><input type=checkbox disabled class=task-list-item> a task list item</label></li><li><label><input type=checkbox disabled class=task-list-item> list syntax required</label></li><li><label><input type=checkbox disabled class=task-list-item> incomplete</label></li><li><label><input type=checkbox checked disabled class=task-list-item> completed</label></li></ul><hr><h3 id=表格>表格</h3><h4 id=code-1-普通-1><em>Code-1 [普通]</em></h4><p>注： <code>:</code> 代表对齐方式 , <strong><code>:</code> 与 <code>|</code> 之间不要有空格</strong>，否则对齐会有些不兼容</p><pre><code>|    a    |       b       |      c     |
+</code></pre><h4 id=demo-1-普通><em>Demo-1 [普通]</em></h4><ul class=task-list><li><label><input type=checkbox disabled class=task-list-item> a task list item<br></label></li><li><label><input type=checkbox disabled class=task-list-item> list syntax required<br></label></li><li><label><input type=checkbox disabled class=task-list-item> incomplete<br></label></li><li><label><input type=checkbox checked disabled class=task-list-item> completed<br><br></label></li></ul><hr><h3 id=表格>表格</h3><h4 id=code-1-普通-1><em>Code-1 [普通]</em></h4><p>注： <code>:</code> 代表对齐方式 , <strong><code>:</code> 与 <code>|</code> 之间不要有空格</strong>，否则对齐会有些不兼容</p><pre><code>|    a    |       b       |      c     |
 |:-------:|:------------- | ----------:|
 |   居中  |     左对齐     |   右对齐   |
 
@@ -143,8 +140,7 @@ two</p></blockquote></li></ul><hr><h3 id=任务列表>任务列表</h3><h4 id=co
 :-:|:- |-:
     居中    |     左对齐      |   右对齐   
 </code></pre><h4 id=demo-2-简约写法><em>Demo-2 [简约写法]</em></h4><table><thead><tr><th align=center>a</th><th align=left>b</th><th align=right>c</th></tr></thead><tbody><tr><td align=center>居中</td><td align=left>左对齐</td><td align=right>右对齐</td></tr></tbody></table><hr><h3 id=内嵌css样式>内嵌CSS样式</h3><h4 id=code-5><em>Code</em></h4><pre><code class=language-html>&lt;b style=&quot;color: #AD5D0F;font-size: 30px; font-family: '宋体';&quot;&gt;内联样式&lt;/b&gt;
-</code></pre><h4 id=demo-5><em>Demo</em></h4><p><b style=color:#ad5d0f;font-size:30px;font-family:宋体>内联样式</b></p><hr><h3 id=语义标记>语义标记</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>*斜体*</td></tr><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>_斜体_</td></tr><tr><td align=left>加粗</td><td align=left><strong>加粗</strong></td><td align=left>**加粗**</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>***加粗+斜体***</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>**<em>加粗+斜体</em>**</td></tr><tr><td align=left>删除线</td><td align=left><del>删除线</del></td><td align=left>~~删除线~~</td></tr></tbody></table><hr><h3 id=语义标签>语义标签</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><i>斜体</i></td><td align=left><code>&lt;i&gt;斜体&lt;/i&gt;</code></td></tr><tr><td align=left>加粗</td><td align=left><b>加粗</b></td><td align=left><code>&lt;b&gt;加粗&lt;/b&gt;</code></td></tr><tr><td align=left>强调</td><td align=left><em>强调</em></td><td align=left><code>&lt;em&gt;强调&lt;/em&gt;</code></td></tr><tr><td align=left>上标</td><td align=left>Z<sup>a</sup></td><td align=left><code>Z&lt;sup&gt;a&lt;/sup&gt;</code></td></tr><tr><td align=left>下标</td><td align=left>Z<sub>a</sub></td><td align=left><code>Z&lt;sub&gt;a&lt;/sub&gt;</code></td></tr><tr><td align=left>键代码</td><td align=left><kbd>Ctrl</kbd></td><td align=left><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;</code></td></tr><tr><td align=left>换行</td><td align=left></td><td align=left></td></tr></tbody></table><hr><h3 id=分隔符>分隔符</h3><h4 id=code-6><em>Code</em></h4><p><em>注：最少三个 <code>---</code> 或 <code>***</code> 或 <code>* * *</code>
-你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。</em></p><pre><code>* * *
+</code></pre><h4 id=demo-5><em>Demo</em></h4><p><b style=color:#ad5d0f;font-size:30px;font-family:宋体>内联样式</b></p><hr><h3 id=语义标记>语义标记</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>*斜体*</td></tr><tr><td align=left>斜体</td><td align=left><em>斜体</em></td><td align=left>_斜体_</td></tr><tr><td align=left>加粗</td><td align=left><strong>加粗</strong></td><td align=left>**加粗**</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>***加粗+斜体***</td></tr><tr><td align=left>加粗+斜体</td><td align=left><strong><em>加粗+斜体</em></strong></td><td align=left>**<em>加粗+斜体</em>**</td></tr><tr><td align=left>删除线</td><td align=left><del>删除线</del></td><td align=left>~~删除线~~</td></tr></tbody></table><hr><h3 id=语义标签>语义标签</h3><table><thead><tr><th align=left>描述</th><th align=left>效果</th><th align=left>代码</th></tr></thead><tbody><tr><td align=left>斜体</td><td align=left><i>斜体</i></td><td align=left><code>&lt;i&gt;斜体&lt;/i&gt;</code></td></tr><tr><td align=left>加粗</td><td align=left><b>加粗</b></td><td align=left><code>&lt;b&gt;加粗&lt;/b&gt;</code></td></tr><tr><td align=left>强调</td><td align=left><em>强调</em></td><td align=left><code>&lt;em&gt;强调&lt;/em&gt;</code></td></tr><tr><td align=left>上标</td><td align=left>Z<sup>a</sup></td><td align=left><code>Z&lt;sup&gt;a&lt;/sup&gt;</code></td></tr><tr><td align=left>下标</td><td align=left>Z<sub>a</sub></td><td align=left><code>Z&lt;sub&gt;a&lt;/sub&gt;</code></td></tr><tr><td align=left>键代码</td><td align=left><kbd>Ctrl</kbd></td><td align=left><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;</code></td></tr><tr><td align=left>换行</td><td align=left></td><td align=left></td></tr></tbody></table><hr><h3 id=分隔符>分隔符</h3><h4 id=code-6><em>Code</em></h4><p><em>注：最少三个 <code>---</code> 或 <code>***</code> 或 <code>* * *</code><br>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。</em></p><pre><code>* * *
 
 ***
 
@@ -155,8 +151,7 @@ two</p></blockquote></li></ul><hr><h3 id=任务列表>任务列表</h3><h4 id=co
 ---------------------------------------
 </code></pre><h4 id=demo-6><em>Demo</em></h4><hr><hr><hr><hr><hr><p><em>Demo end</em></p><hr><h3 id=自动链接>自动链接</h3><h4 id=code-7><em>Code</em></h4><p><em>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用<code>&lt;&gt;</code>;包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样</em></p><pre><code>&lt;http://arae.cc/&gt;
 &lt;example@arae.cc&gt;
-</code></pre><h4 id=demo-7><em>Demo</em></h4><p><a href=http://arae.cc/ rel=nofollow target=_blank>http://arae.cc/</a>
-<a href=mailto:example@arae.cc rel=nofollow target=_blank>example@arae.cc</a></p><hr></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+</code></pre><h4 id=demo-7><em>Demo</em></h4><p><a href=http://arae.cc/ rel=nofollow target=_blank>http://arae.cc/</a><br><a href=mailto:example@arae.cc rel=nofollow target=_blank>example@arae.cc</a></p><hr></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
 <a href=/tags/markdown.html rel=tag>Markdown</a>
 <a href=/tags/%E8%AF%AD%E6%B3%95.html rel=tag>语法</a>
 <a href=/tags/code.html rel=tag>Code</a>

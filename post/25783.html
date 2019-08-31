@@ -47,7 +47,7 @@ var blockchain = [getGenesisBlock()];
         console.log('Received blockchain invalid');
     }
 };
-</code></pre><h3 id=与其他节点通信>与其他节点通信</h3><p>一个节点的最重要的职能是与其他节点共享和同步区块链。以下规则用来保持网络同步。</p><ul><li>当一个节点产生一个新块时，它将它广播到网络</li><li>当一个节点连接到一个新的节点时，它将查询最新的块</li><li>当一个节点遇到一个索引大于当前已知块的块时，它会将该块添加到当前链中，或者查询完整的区块链。</li></ul><p><img src=https://i.loli.net/2018/03/28/5abb26b0bf41c.jpg?80 alt></p><p>我们暂未实现节点自动发现，必须手动添加对等点的位置（=URLs）。</p><h3 id=控制节点>控制节点</h3><p>用户必须能够以某种方式控制节点。这是通过设置HTTP服务器完成的。</p><pre><code class=language-js>var initHttpServer = () =&gt; {
+</code></pre><h3 id=与其他节点通信>与其他节点通信</h3><p>一个节点的最重要的职能是与其他节点共享和同步区块链。以下规则用来保持网络同步。</p><ul><li>当一个节点产生一个新块时，它将它广播到网络<br></li><li>当一个节点连接到一个新的节点时，它将查询最新的块<br></li><li>当一个节点遇到一个索引大于当前已知块的块时，它会将该块添加到当前链中，或者查询完整的区块链。<br><br></li></ul><p><img src=https://i.loli.net/2018/03/28/5abb26b0bf41c.jpg?80 alt></p><p>我们暂未实现节点自动发现，必须手动添加对等点的位置（=URLs）。</p><h3 id=控制节点>控制节点</h3><p>用户必须能够以某种方式控制节点。这是通过设置HTTP服务器完成的。</p><pre><code class=language-js>var initHttpServer = () =&gt; {
     var app = express();
     app.use(bodyParser.json());
 
@@ -68,8 +68,7 @@ var blockchain = [getGenesisBlock()];
     });
     app.listen(http_port, () =&gt; console.log('Listening http on port: ' + http_port));
 };
-</code></pre><p>如上所示，用户能够通过以下方式与节点交互：</p><ul><li>列出所有的块</li><li>用用户给出的内容创建一个新块</li><li><p>列出或添加节点
-控制节点最直接的方法是使用Curl：</p><pre><code class=language-bash>#get all blocks from the node
+</code></pre><p>如上所示，用户能够通过以下方式与节点交互：</p><ul><li>列出所有的块<br></li><li>用用户给出的内容创建一个新块<br></li><li><p>列出或添加节点<br>控制节点最直接的方法是使用Curl：</p><pre><code class=language-bash>#get all blocks from the node
 curl http://localhost:3001/blocks
 </code></pre></li></ul><h3 id=架构>架构</h3><p>值得注意的是，一个节点实际上暴露了两个web服务器：一个用于控制节点（HTTP服务器），一个用于节点之间的点对点通信（Websocket HTTP服务器）。</p><p><img src=https://i.loli.net/2018/03/28/5abb26b09fc2d.jpg?81 alt></p></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
 <a href=/tags/code.html rel=tag>Code</a>
