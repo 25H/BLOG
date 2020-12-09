@@ -18,4 +18,4 @@ Disallow: /404.html
 Disallow: /emlist.html
 
 # SiteMap
-Sitemap: http://arae.cc/sitemap.xml
+#Sitemap: http://arae.cc/sitemap.xml
