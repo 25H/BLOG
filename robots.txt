@@ -1,5 +1,5 @@
 # Update
-# 2019-8-25 07:58
+# 2020-12-23 18:55
 
 User-agent: *
 
@@ -9,6 +9,7 @@ Disallow: /css/
 Disallow: /fonts/
 Disallow: /images/
 Disallow: /upload/
+Disallow: /soft/
 
 # 文件
 Disallow: /*.json
