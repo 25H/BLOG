@@ -7,6 +7,10 @@
         - /cache/icon/
         - /cache/MemoryCache.dat
         - /cache/MemoryCacheKey.json
+- 重构 多语言获取
+- 重构 资源获取
+- 变更 内置资源变更为外部资源包
+- 调整 主窗口设置窗口加载过程
 - 调整 图标获取尺寸变更为256与48
 - 调整 主动内存管理执行规则
 - 调整 内存回收规则
