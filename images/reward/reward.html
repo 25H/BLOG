@@ -7,59 +7,66 @@ layout: false
 
 
 <style>
-    .box{
+    /* .box {
         width: 600px;
         height: 270px;
+    } */
+    .box > div {
+        margin-top: 20px;
+    }
+    .box > div:not(:first-child) {
+        margin-left: 20px;
+    }
 
-    }
-    .zfb,.wx{
-        width: 270px;
-        height: 270px;
-        float: left;
-        text-align: center;
-    }
-    .name{
+    .name {
         padding: 15px 0;
         color: #fff;
         font-size: 20px;
         font-family: 'Roboto Slab','Monda',"PingFang SC","Microsoft YaHei",sans-serif;
     }
-    .zfb img,.wx img{
-        width: 180px;
-        height: 180px;
+    .sponsor {
+        width: 270px;
+        height: 270px;
+        float: left;
+        text-align: center;
+    }
+    .sponsor .qr {
+        margin: auto;
+        width: max-content;
+        height: max-content;
         background-color: #fff;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 90% 90%;
     }
-    .zfb img{
-        background-image: url('./zfb.png');
+    .sponsor img {
+        width: 170px;
+        height: 170px;
+        margin: 8px;
     }
-    .wx img{
-        background-image: url('./wx.png');
-    }
-    
-    .zfb{
-        background-color: #019FE8;
-    }
-    .wx{
-        background-color: #22AB38;
-    }
-    .jiange{
-        margin-left: 60px;
-    }
+
 </style>
 
 
 
 <div class="box">
-    <div class="zfb">
+
+    <div class="sponsor" style="background-color: #019FE8;">
         <div class="name">支付宝</div>
-        <img>
+        <div class="qr">
+            <img src="./zfb.png">
+        </div>
     </div>
 
-    <div class="wx jiange">
+    <div class="sponsor" style="background-color: #22AB38;">
         <div class="name">微 信</div>
-        <img>
+        <div class="qr">
+            <img src="./wx.png">
+        </div>
     </div>
+
+    <div class="sponsor" style="background-color: #12b7f5;">
+        <div class="name">QQ</div>
+        <div class="qr">
+            <img src="./qq.png">
+        </div>
+    </div>
+
 </div>
