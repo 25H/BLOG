@@ -1,1 +1,1 @@
-{"code":200,"version":"1.0.0.1","published":1636361163,"download":"https://blog.arae.cc/","body":"-"}
+{"code":200,"version":"1.0.0.2","published":1645635547,"download":"https://blog.arae.cc/post/25842.html","body":"- 增加 配置项\"IsTopMost\"窗口是否置顶\r\n- 修改 菜单与窗口改为中文\r\n- 修复 URL路径复制Bug"}
