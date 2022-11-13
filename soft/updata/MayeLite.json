@@ -1,1 +1,1 @@
-{"code":200,"version":"1.0.0.4","published":1650834898,"download":"https://blog.arae.cc/post/25842.html","body":"- 增加 加入微信群入口\r\n- 修复 部分环境下编辑保存异常\r\n- 修复 修复拖动bug"}
+{"code":200,"version":"1.0.0.6","published":1668317173,"download":"https://blog.arae.cc/post/25842.html","body":"- 修改 pack打开策略\r\n- 修复 首分类空白皮肤加载出错bug\r\n- 修复 部分已知Bug"}
