@@ -1,0 +1,739 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><meta http-equiv=cache-control content=no-transform><meta http-equiv=cache-control content=no-siteapp><meta name=generator content="Hugo 0.57.2"><meta name=author content=25H><meta name=copyright content=ARAE><meta name=robots content=all><meta name=keywords content=Maye,MayeLite><meta name=description content="Maye Lite Script 基于 JavaScript ，支持 JavaScript 98% 以上的语法。 ！！！每个脚本实例中必须包含 mz.exit(); 退出命令，否则脚本实例将会一存在。 简介 Maye Lite Script Framework , 采用多线程调用多进程执行方式(开 …"><title>Maye Lite Script Help - ARAE</title><link rel=icon href=/images/favicon.png><link rel=canonical href=https://blog.arae.cc/post/25848.html><link rel=stylesheet href=/assets/style.min.css><script src=/assets/script.min.js></script></head><body><div id=kratos-wrapper><div id=kratos-page><div id=kratos-header><header id=kratos-header-section><div class=container><div class=nav-header><nav id=kratos-menu-wrap class=menu-main-container><ul id=kratos-primary-menu class=sf-menu><li class=current-menu-item><a href=/ aria-current=page><i class="fa fa-home"></i>&nbsp;首页</a></li><li><a href=/categories/%E7%8A%B6%E6%80%81.html><i class="fa fa-at"></i>&nbsp;状态</a></li><li><a href=javascript:;><i class="fa fa-folder-o"></i>&nbsp;分类</a><ul class=sub-menu><li><a href=/categories/code.html>Coding</a></li><li><a href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li><li><a href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li></ul></li><li><a href=/z/projects.html><i class="fa fa-bug"></i>&nbsp;项目</a></li><li><a href=/z/links.html><i class="fa fa-mars"></i>&nbsp;友链</a></li><li><a href=/z/about.html><i class="fa fa-rocket"></i>&nbsp;关于</a></li></ul></nav></div></div></header></div><div class="kratos-start kratos-hero-2"><div class=kratos-overlay></div><div class="kratos-cover kratos-cover_2 text-center"><div class="desc desc2 animate-box"><a href=https://blog.arae.cc/><h2>25H's Blog</h2><br><span></span></a></div></div></div><div id=kratos-blog-post style=background:#f5f5f5><div id=container class=container style=opacity:1><div class=row><section id=main class=col-md-8><article><div class="kratos-hentry kratos-post-inner clearfix"><header class=kratos-entry-header><h1 class="kratos-entry-title text-center">Maye Lite Script Help</h1><div class="kratos-post-meta text-center"><span title="2022-11-22 21:36:21"><i class="fa fa-calendar"></i>&nbsp;2022年11月22日</span>
+<span><i class="fa fa-folder-o"></i>&nbsp;<a class=label href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></span><span title="文章字数： ≈ 9397 字"><i class="fa fa-file-word-o"></i>&nbsp;9.40k</span>
+<span title="阅读时长： ≈ 19 分钟"><i class="fa fa-clock-o"></i>&nbsp;19min</span>
+<span><i class="fa fa-user"></i>&nbsp;25H</span></div></header><div class=kratos-post-content><blockquote><p>Maye Lite Script 基于 JavaScript ，支持 JavaScript 98% 以上的语法。</p></blockquote><p></p><blockquote><p>！！！每个脚本实例中必须包含 <code>mz.exit();</code> 退出命令，否则脚本实例将会一存在。</p></blockquote><p><br></p><hr><h3 id=简介>简介</h3><p>Maye Lite Script Framework , 采用多线程调用多进程执行方式(开启minSpareChildProcess)，与同类不同之处在于采用不调用退出命令不退自动退出的方式，该方式可随意操控脚本在想要的时候完全退出并释放资源。</p><p><br></p><hr><h3 id=代码编辑器>代码编辑器</h3><pre><code>附加快捷键
+    Ctrl+S          保存，子窗口生效（以便及时调试使用）
+    Ctrl+Alt+Z      自动换行
+    Ctrl+D          复制
+</code></pre><p><br></p><hr><h3 id=结构体与常量>结构体与常量</h3><pre><code class=language-cpp>// 此处为方便辨别以cpp方式展现，实际使用时自行转换为js方式
+
+const int    NULL    = 0;       // int 类型空值，所有空传入 int 类型都应使用此值
+const string NULLSTR = &quot;&quot;;      // string 类型空值，所有空传入 string 类型都应使用此值
+const int    S_OK    = 0;
+
+struct POINT {
+    int x;
+    int y;
+};
+struct RECT {
+    int left;
+    int top;
+    int right;
+    int bottom;
+};
+struct SIZE {
+    int cx;
+    int cy;
+};
+</code></pre><p><br></p><hr><h3 id=基础>基础</h3><h4 id=exit>exit()</h4><pre><code class=language-js>// void exit();
+// 用作退出脚本实例并释放内存，每个脚本都应存在该命令，否则脚本实例将一直存在并占用内存
+mz.exit();
+</code></pre><h4 id=delay>Delay()</h4><pre><code class=language-js>// void Delay(int ms);
+// 延时，延时执行后续命令
+// @param int ms 延迟时间(毫秒)
+mz.Delay(1000);
+</code></pre><h4 id=sleep>Sleep()</h4><pre><code class=language-js>// void Sleep(int ms);
+// 延时，延时执行后续命令
+// @param int ms 延迟时间(毫秒)
+mz.Sleep(1000);
+</code></pre><p><br></p><hr><h3 id=按键>按键</h3><h4 id=sendstring>SendString()</h4><pre><code class=language-js>// void SendString(string str);
+// 模拟输入字符串(适用于大部分游戏)
+// @param string str 要输入的字符串
+mz.SendString('test');
+</code></pre><h4 id=sendvkeydown>SendVKeyDown()</h4><pre><code class=language-js>// void SendVKeyDown(vk virtualKey);
+// 模拟按下指定的VirtualKeyCode。
+// @param vk virtualKey 要模拟发送的 VirtualKeyCode (VK.XX) 值
+mz.SendVKeyDown(VK.KEY_A);
+</code></pre><h4 id=sendvkeyup>SendVKeyUp()</h4><pre><code class=language-js>// void SendVKeyUp(vk virtualKey);
+// 模拟释放指定的VirtualKeyCode。
+// @param vk virtualKey 要模拟发送的 VirtualKeyCode (VK.XX) 值
+mz.SendVKeyUp(VK.KEY_A);
+</code></pre><h4 id=sendvkey>SendVKey()</h4><pre><code class=language-js>// void SendVKey(vk virtualKey);
+// 模拟按下并释放指定的VirtualKeyCode。
+// @param vk virtualKey 要模拟发送的 VirtualKeyCode (VK.XX) 值
+mz.SendVKey(VK.KEY_A);
+</code></pre><h4 id=sendmodifiedvkeys>SendModifiedVKeys()</h4><pre><code class=language-js>// void SendModifiedVKeys(dynamic Modifiers, dynamic Keys);
+// 模拟按下组合键，如Ctrl+S，Win+E等。按住修饰键，发送按键，然后释放修饰键。(PS: 其他几个Ex结尾的也支持修饰键与按键一起发送🤣)
+// @param dynamic Modifiers VirtualKeyCode 修饰符值的单个(VK.XX)或数组([VK.XX,VK.XX])。修饰符包括Control,Alt,Shift和Win键。
+// @param dynamic Keys      在按下修饰键后要发送的 VirtualKeyCode 值，可以是单个(VK.XX)或数组([VK.XX,VK.XX])。
+mz.SendModifiedVKeys([VK.LCONTROL,VK.LSHIFT],[VK.KEY_K]);
+</code></pre><h4 id=sendvkeydownex>SendVKeyDownEx()</h4><pre><code class=language-js>// void SendVKeyDownEx(dynamic Keys);
+// 同SendVKeyDown
+// @param dynamic Keys 要发送的 VirtualKeyCode 值，可以是单个(VK.XX)或数组([VK.XX,VK.XX])。
+mz.SendVKeyDownEx([VK.KEY_M, VK.KEY_Z]);
+</code></pre><h4 id=sendvkeyupex>SendVKeyUpEx()</h4><pre><code class=language-js>// void SendVKeyUpEx(dynamic Keys);
+// 同SendVKeyUp
+// @param dynamic Keys 要发送的 VirtualKeyCode 值，可以是单个(VK.XX)或数组([VK.XX,VK.XX])。
+mz.SendVKeyUpEx([VK.KEY_M, VK.KEY_Z]);
+</code></pre><h4 id=sendvkeyex>SendVKeyEx()</h4><pre><code class=language-js>// void SendVKeyEx(dynamic Keys);
+// 同SendVKey
+// @param dynamic Keys 要发送的 VirtualKeyCode 值，可以是单个(VK.XX)或数组([VK.XX,VK.XX])。
+mz.SendVKeyEx([VK.KEY_M, VK.KEY_Z]);
+</code></pre><h4 id=iskeydown>IsKeyDown()</h4><pre><code class=language-js>// bool IsKeyDown(vk virtualKey);
+// 如果当前按下指定的键，则返回 true。
+// @param vk virtualKey 要检查的 VirtualKeyCode (VK.XX) 值
+// @return 按下返回true，否则为false
+var isAKeyDown = mz.IsKeyDown(VK.KEY_A);
+</code></pre><h4 id=sendaltdown>SendAltDown()</h4><pre><code class=language-js>// void SendAltDown();
+// 模拟按下左Alt键
+mz.SendAltDown();
+</code></pre><h4 id=sendaltup>SendAltUp()</h4><pre><code class=language-js>// void SendAltUp();
+// 模拟释放左Alt键
+mz.SendAltUp();
+</code></pre><h4 id=sendcontroldown>SendControlDown()</h4><pre><code class=language-js>// void SendControlDown();
+// 模拟按下左Ctrl键
+mz.SendControlDown();
+</code></pre><h4 id=sendcontrolup>SendControlUp()</h4><pre><code class=language-js>// void SendControlUp();
+// 模拟释放左Ctrl键
+mz.SendControlUp();
+</code></pre><h4 id=sendshiftdown>SendShiftDown()</h4><pre><code class=language-js>// void SendShiftDown();
+// 模拟按下左Shift键
+mz.SendShiftDown();
+</code></pre><h4 id=sendshiftup>SendShiftUp()</h4><pre><code class=language-js>// void SendShiftUp();
+// 模拟释放左Shift键
+mz.SendShiftUp();
+</code></pre><h4 id=sendwindown>SendWinDown()</h4><pre><code class=language-js>// void SendWinDown();
+// 模拟按下左Win键
+mz.SendWinDown();
+</code></pre><h4 id=sendwinup>SendWinUp()</h4><pre><code class=language-js>// void SendWinUp();
+// 模拟释放左Win键
+mz.SendWinUp();
+</code></pre><p><br></p><hr><h3 id=鼠标>鼠标</h3><h4 id=mousecilck>MouseCilck()</h4><pre><code class=language-js>// void MouseCilck(MouseBtn btn, bool isClick, bool isDown);
+// 发送鼠标按键信息
+// @param MouseBtn btn      按键信息(MouseBtn.XX)
+// @param bool     isClick  是否为单击(默认:true)，如果该值为true则跳过isDown
+// @param bool     isDown   是否按下(默认:false)，true按下，false弹起，如果isClick为true则该值失效
+mz.MouseCilck(MouseBtn.Left);
+</code></pre><h4 id=mousemove>MouseMove()</h4><pre><code class=language-js>// void MouseMove(int x, int y, bool isAbsolute);
+// 移动鼠标
+// @param int  x          水平
+// @param int  y          垂直
+// @param bool isAbsolute 是否为绝对值，如果为true，则xy相对于桌面左上角，否则xy相对于鼠标当前坐标
+mz.MouseMove(-10);
+</code></pre><h4 id=mousewhell>MouseWhell()</h4><pre><code class=language-js>// void MouseWhell(int amount, bool isHorizontally);
+// 鼠标滚轮
+// @param int  amount         滚动量(正负值)
+// @param bool isHorizontally 是否水平滚动
+mz.MouseWhell(-3);
+</code></pre><h4 id=isbuttondown>IsButtonDown()</h4><pre><code class=language-js>// bool IsButtonDown(MouseBtn btn);
+// 如果当前按下指定的鼠标键，则返回 true。
+// @param MouseBtn btn 要检查的 VirtualKeyCode (MouseBtn.XX) 值
+// @return 按下返回true，否则为false
+var isLeftMouseDown = mz.IsButtonDown(MouseBtn.Left);
+</code></pre><h4 id=getcurrentmousepoint>GetCurrentMousePoint()</h4><pre><code class=language-js>// POINT GetCurrentMousePoint();
+// 返回包含当前鼠标位置坐标的点
+// @return 返回xy坐标
+var currentMouseLocation = mz.GetCurrentMousePoint();
+</code></pre><p><br></p><hr><h3 id=系统>系统</h3><h4 id=gettickcount>GetTickCount()</h4><pre><code class=language-js>// int GetTickCount();
+// 检索自系统启动以来已用过的毫秒数，最长为 49.7 天。
+// @return 返回值是自系统启动以来已用过的毫秒数。
+var r = mz.GetTickCount();
+</code></pre><h4 id=gettickcount64>GetTickCount64()</h4><pre><code class=language-js>// string GetTickCount64();
+// 检索自系统启动以来已用过的毫秒数。
+// @return 返回值是自系统启动以来已用过的毫秒数。
+var r = mz.GetTickCount64();
+</code></pre><h4 id=queryrecyclebin>QueryRecycleBin()</h4><pre><code class=language-js>// int EmptyRecycleBin(string RootPath);
+// 查询指定驱动器回收站上的项目数量。
+// @param string RootPath  回收站所在的根驱动器的路径，可以包含根驱动器、文件夹和子文件夹(如：C:\windows\system)。如果此值为空或NULLSR，则查询所有驱动器上的所有回收站。
+// @return 成功返回项目数，失败返回 0(成功也可能返回0🤣)
+var r = mz.QueryRecycleBin('D:\\');
+
+// 查询所有
+var r = mz.QueryRecycleBin();
+</code></pre><h4 id=emptyrecyclebin>EmptyRecycleBin()</h4><pre><code class=language-js>// int EmptyRecycleBin(string RootPath);
+// 清空指定驱动器上的回收站。详情参照微软文档
+// @param string RootPath  回收站所在的根驱动器的路径，可以包含根驱动器、文件夹和子文件夹(如：C:\windows\system)。如果此值为空或NULLSR，则清空所有驱动器上的所有回收站。
+// @return 成功返回S_OK，失败返回 HRESULT 错误代码
+var r = mz.EmptyRecycleBin('D:\\');
+
+// 清空所有
+var r = mz.EmptyRecycleBin();
+</code></pre><h4 id=expandenvironmentvariables>ExpandEnvironmentVariables()</h4><pre><code class=language-js>// int ExpandEnvironmentVariables(string stringToExpand);
+// 展开环境变量字符串，同时支持maye的参数变量。
+// @param string stringToExpand  要展开的环境变量字符串。
+// @return 成功返回展开后的字符串，失败返回 stringToExpand
+var expanded = mz.ExpandEnvironmentVariables('%OS%');
+</code></pre><h4 id=winexecex>WinExecEx()</h4><pre><code class=language-js>// void WinExecEx(string cmdLine, int cmdShow);
+// 运行指定程序，该函数原型为 CreateProcess 二次封装而非 WinExec
+// @param string cmdLine 要执行的程序命令行 (加入参数)
+// @param int cmdShow 不懂可忽略，详情参照微软文档
+mz.WinExecEx('C:\\Windows\\system32\\notepad.exe');
+</code></pre><h4 id=run>Run()</h4><pre><code class=language-js>// int Run(RunType Mode, string path, string param, string dir, bool isThread, bool waitRunComplete, bool ignoreError);
+// 展开环境变量字符串，同时支持maye的参数变量。
+// @param RunType Mode          运行方式 (RunType.XX)
+// @param string path           目标
+// @param string param          启动参数
+// @param string dir            起始位置
+// @param bool isThread         是否通过多线程执行 (默认: true)
+// @param bool waitRunComplete  等待程序退出后返回 (默认: false)
+// @param bool ignoreError      忽略错误警告 (默认: false)
+// @return 成功返回 1 如果未开启多线程执行则返回对应的进程PID，失败返回 0
+var r = mz.Run(RunType.default, '%ComSpec%', '', 'C:\\', true, false, false);
+</code></pre><h4 id=runcmeline>RunCmeLine()</h4><pre><code class=language-js>// void RunCmeLine(string cmdLine, bool isShow, bool isExit);
+// 运行命令行
+// @param string cmdLine 要执行的命令行
+// @param bool isShow 是否显示窗口(默认:true)
+// @param bool isExit 执行完毕是否退出(默认:false不退出)
+mz.RunCmeLine('ping 127.0.0.1');
+</code></pre><h4 id=runcmelineex>RunCmeLineEx()</h4><pre><code class=language-js>// object RunCmeLineEx(string cmdLine);
+// 运行命令行，并等待执行完毕。该命令会卡住主线程直道执行完毕。
+// @param string cmdLine 要执行的命令行
+// @return object{
+//              code: -1,       执行返回代码，-1表示执行失败，其他值为命令返回值，尽量别用这个判断是否成功
+//              out: '',        命令行输出字符串
+//              err: ''         错误信息
+//         }
+var ret = mz.RunCmeLine('ping 127.0.0.1');
+</code></pre><h4 id=runitem>RunItem()</h4><pre><code class=language-js>// void RunItem(int id);
+// 运行 Maye 项目
+// @param int id 项目id，右键编辑标题栏里面的数值就是
+mz.RunItem(1001);
+</code></pre><h4 id=getclipboardtext>GetClipboardText()</h4><pre><code class=language-js>// string GetClipboardText();
+// 获取剪贴板文本
+// @return 成功返回剪辑板文本，失败返回空
+var r = mz.GetClipboardText();
+</code></pre><h4 id=setclipboardtext>SetClipboardText()</h4><pre><code class=language-js>// bool SetClipboardText(string text);
+// 设置剪贴板文本
+// @param string text 欲设置的文本
+// @return 成功返回 true，失败返回 false
+var r = mz.SetClipboardText('test');
+</code></pre><p><br></p><hr><h3 id=窗口>窗口</h3><h4 id=findwindow>FindWindow()</h4><pre><code class=language-js>// int FindWindow(string ClassName, string WindowName);
+// 检索顶级窗口的句柄，该窗口的类名称和窗口名称与指定的字符串匹配。 此函数不搜索子窗口。 此函数不执行区分大小写的搜索。详情参照微软文档
+// @param string ClassName  类名    (不使用则传递空字符串)
+// @param string WindowName 窗口名  (不使用则传递空字符串)
+// @return 成功返回窗口句柄，失败返回0
+var hWnd = mz.FindWindow('', 'Maye Lite');
+</code></pre><h4 id=findwindowex>FindWindowEx()</h4><pre><code class=language-js>// int FindWindowEx(int hWndParent, int hWndChildAfter, string ClassName, string WindowName);
+// 检索一个窗口的句柄，该窗口的类名和窗口名称与指定的字符串匹配。 该函数搜索子窗口，从指定子窗口后面的子窗口开始。 此函数不执行区分大小写的搜索。详情参照微软文档
+// @param int hWndParent     父窗口句柄  (不使用则传递0)
+// @param int hWndChildAfter 子窗口句柄  (不使用则传递0)
+// @param string ClassName   类名       (不使用则传递空字符串)
+// @param string WindowName  窗口名     (不使用则传递空字符串)
+// @return 成功返回窗口句柄，失败返回0
+var hWnd = mz.FindWindowEx(0, 0, '', 'Maye Lite');
+</code></pre><h4 id=getparent>GetParent()</h4><pre><code class=language-js>// int GetParent(int hWnd);
+// 检索指定窗口的父或所有者的句柄。详情参照微软文档
+// @param int hWnd     窗口句柄
+// @return 成功返回窗口句柄，失败返回0
+var hWnd = mz.GetParent(68214);
+</code></pre><h4 id=getancestor>GetAncestor()</h4><pre><code class=language-js>// int GetAncestor(int hWnd, int gaFlags);
+// 检索指定窗口的上级句柄。详情参照微软文档
+// @param int hWnd     窗口句柄。 如果此参数是桌面窗口，则该函数返回 0
+// @param int gaFlags  可选值：(默认:3)
+//                            1: 检索父窗口。 这不包括所有者，因为它与 GetParent 函数一样。
+//                            2: 通过走父窗口链来检索根窗口。
+//                            3: 通过走 GetParent 返回的父窗口和所有者窗口链来检索拥有的根窗口。
+// @return 成功返回窗口句柄，失败返回0
+var hWnd = mz.GetAncestor(68214);
+</code></pre><h4 id=getdesktopwindow>GetDesktopWindow()</h4><pre><code class=language-js>// int GetDesktopWindow();
+// 检索桌面窗口的句柄。详情参照微软文档
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.GetDesktopWindow();
+</code></pre><h4 id=windowfrompoint>WindowFromPoint()</h4><pre><code class=language-js>// int WindowFromPoint(int x, int y);
+// 检索包含指定点的窗口的句柄。详情参照微软文档
+// @param int  x          水平
+// @param int  y          垂直
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.WindowFromPoint(100,100);
+
+// 如获取鼠标处窗口句柄：
+var pt = mz.GetCurrentMousePoint();
+var hWnd = mz.WindowFromPoint(pt.x,pt.y);
+</code></pre><h4 id=getdlgctrlid>GetDlgCtrlID()</h4><pre><code class=language-js>// int GetDlgCtrlID(int hWnd);
+// 检索指定控件的ID。详情参照微软文档
+// @param int hWnd 控件的句柄
+// @return 成功返回控件ID，失败返回0
+var id = mz.GetDlgCtrlID(68214);
+</code></pre><h4 id=getdlgitem>GetDlgItem()</h4><pre><code class=language-js>// int GetDlgItem(int hDlg, int nIDDlgItem);
+// 检索指定对话框中控件的句柄。详情参照微软文档
+// @param int hDlg       父句柄
+// @param int nIDDlgItem 要检索的控件的ID
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.GetDlgItem(68214, 220);
+</code></pre><h4 id=getwindowrect>GetWindowRect()</h4><pre><code class=language-js>// RECT GetWindowRect(int hWnd);
+// 检索指定窗口的边界矩形的尺寸。尺寸以相对于屏幕左上角的屏幕坐标提供。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 成功返回RECT结构体，失败返回false
+var rc = mz.GetWindowRect(68214);
+</code></pre><h4 id=getclientrect>GetClientRect()</h4><pre><code class=language-js>// RECT GetClientRect(int hWnd);
+// 检索窗口工作区的坐标。 客户端坐标指定工作区的左上角和右下角。由于客户端坐标相对于窗口工作区的左上角，左上角的坐标 (0,0) 。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 成功返回RECT结构体，失败返回false
+var rc = mz.GetClientRect(68214);
+</code></pre><h4 id=ischild>IsChild()</h4><pre><code class=language-js>// bool IsChild(int hWndParent, int hWnd);
+// 判断一个窗口和另一窗口是否为父子关系。详情参照微软文档
+// @param int hWndParent    父窗口句柄
+// @param int hWnd          要测试的窗口句柄
+// @return 是子窗口返回true，否则返回false
+var is = mz.IsChild(68214, 393850);
+</code></pre><h4 id=iswindow>IsWindow()</h4><pre><code class=language-js>// bool IsWindow(int hWnd);
+// 确定指定的窗口句柄是否有效。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 成功返回true，失败返回false
+var is = mz.IsWindow(68214);
+</code></pre><h4 id=iswindowvisible>IsWindowVisible()</h4><pre><code class=language-js>// bool IsWindowVisible(int hWnd);
+// 确定指定窗口的可见性状态。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 成功返回true，失败返回false
+var is = mz.IsWindowVisible(68214);
+</code></pre><h4 id=iswindowtop>IsWindowTop()</h4><pre><code class=language-js>// bool IsWindowTop(int hWnd);
+// 窗口是否置顶
+// @param int hWnd 窗口句柄
+// @return 置顶返回true，否则返回false
+var is = mz.IsWindowTop(68214);
+</code></pre><h4 id=iswindowenabled>IsWindowEnabled()</h4><pre><code class=language-js>// bool IsWindowEnabled(int hWnd);
+// 判断指定窗口的是否被禁止。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 未禁止返回true，禁止返回false
+var is = mz.IsWindowEnabled(68214);
+</code></pre><h4 id=iswindowactive>IsWindowActive()</h4><pre><code class=language-js>// bool IsWindowActive(int hWnd);
+// 窗口是否激活
+// @param int hWnd 窗口句柄
+// @return 激活返回true，未激活返回false
+var is = mz.IsWindowActive(68214);
+</code></pre><h4 id=isiconic>IsIconic()</h4><pre><code class=language-js>// bool IsIconic(int hWnd);
+// 窗口是否最小化。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 最小化返回true，否则返回false
+var is = mz.IsIconic(68214);
+</code></pre><h4 id=iszoomed>IsZoomed()</h4><pre><code class=language-js>// bool IsZoomed(int hWnd);
+// 窗口是否最大化。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 最大化返回true，否则返回false
+var is = mz.IsZoomed(68214);
+</code></pre><h4 id=iswindowrespond>IsWindowRespond()</h4><pre><code class=language-js>// bool IsWindowRespond(int hWnd);
+// 窗口是否响应
+// @param int hWnd
+// @return 成功返回true(窗口可正常响应)，失败返回false(窗口无响应)
+var ret = mz.IsWindowRespond(68214);
+</code></pre><h4 id=showwindow>ShowWindow()</h4><pre><code class=language-js>// bool ShowWindow(int hWnd, int nCmdShow);
+// 设置指定窗口的显示状态。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @param int nCmdShow  可选值：(默认:1)
+//                            0: 隐藏窗口并激活另一个窗口。
+//                            1: 激活并显示窗口。 如果窗口最小化或最大化，系统会将其还原到其原始大小和位置。 首次显示窗口时，应用程序应指定此标志。
+//                            2: 激活窗口并将其显示为最小化窗口。
+//                            3: 激活窗口并显示最大化的窗口。
+//                            4: 在其最近的大小和位置显示一个窗口。 此值类似于 SW_SHOWNORMAL，但窗口未激活。
+//                            5: 激活窗口并以当前大小和位置显示窗口。
+//                            6: 最小化指定的窗口，并按 Z 顺序激活下一个顶级窗口。
+//                            7: 将窗口显示为最小化窗口。 此值类似于 SW_SHOWMINIMIZED，但窗口未激活。
+//                            8: 以当前大小和位置显示窗口。 此值类似于 SW_SHOW，但窗口未激活。
+//                            9: 激活并显示窗口。 如果窗口最小化或最大化，系统会将其还原到其原始大小和位置。 还原最小化窗口时，应用程序应指定此标志。
+//                            10: 根据启动应用程序的程序传递给 CreateProcess 函数的 STARTUPINFO 结构中指定的SW_值设置显示状态。
+//                            11: 即使拥有窗口的线程未响应，也会最小化窗口。 仅当将窗口从不同的线程最小化时，才应使用此标志。
+// @return 如果窗口以前可见返回true，如果窗口之前已隐藏返回false
+var is = mz.ShowWindow(68214, 0);
+</code></pre><h4 id=showwindowasync>ShowWindowAsync()</h4><pre><code class=language-js>// bool ShowWindowAsync(int hWnd, int nCmdShow);
+// 设置窗口的显示状态，而无需等待操作完成。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @param int nCmdShow  参考 ShowWindow 说明
+// @return 如果操作成功返回true，否则返回false
+var is = mz.ShowWindowAsync(68214, 0);
+</code></pre><h4 id=setparent>SetParent()</h4><pre><code class=language-js>// int SetParent(int hWndChild, int hWndNewParent);
+// 更改指定子窗口的父窗口。详情参照微软文档
+// @param int hWndChild      窗口句柄
+// @param int hWndNewParent  新父窗口的句柄，如果此参数为0，桌面将成为新的父窗口
+// @return 成功返回上一个父窗口的句柄，否则返回0
+var hWnd = mz.SetParent(68214, 0);
+</code></pre><h4 id=getfocus>GetFocus()</h4><pre><code class=language-js>// int GetFocus();
+// 如果窗口附加到调用线程的消息队列，则检索具有键盘焦点的窗口的句柄。详情参照微软文档
+// @return 返回值是具有键盘焦点的窗口的句柄。 如果调用线程的消息队列没有与键盘焦点关联的窗口，则返回值为 NULL。
+var hWnd = mz.GetFocus();
+</code></pre><h4 id=setfocus>SetFocus()</h4><pre><code class=language-js>// int SetFocus(int hWnd);
+// 将键盘焦点设置为指定的窗口。 该窗口必须附加到调用线程的消息队列。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @return 成功返回上一个焦点句柄，否则返回0
+var hWnd = mz.SetFocus(68214);
+</code></pre><h4 id=getactivewindow>GetActiveWindow()</h4><pre><code class=language-js>// int GetActiveWindow();
+// 检索附加到调用线程的消息队列的活动窗口的窗口句柄。详情参照微软文档
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.GetActiveWindow();
+</code></pre><h4 id=setactivewindow>SetActiveWindow()</h4><pre><code class=language-js>// int SetActiveWindow(HWND hWnd);
+// 激活窗口。 窗口必须附加到调用线程的消息队列。详情参照微软文档
+// @param HWND hWnd 要激活的顶级窗口的句柄。
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.SetActiveWindow(68214);
+</code></pre><h4 id=getforegroundwindow>GetForegroundWindow()</h4><pre><code class=language-js>// int GetForegroundWindow();
+// 检索前台窗口的句柄， (用户当前正在使用的窗口) 。详情参照微软文档
+// @return 成功返回句柄，失败返回0
+var hWnd = mz.GetForegroundWindow();
+</code></pre><h4 id=setforegroundwindow>SetForegroundWindow()</h4><pre><code class=language-js>// bool SetForegroundWindow(int hWnd);
+// 将创建指定窗口的线程引入前台并激活窗口。 键盘输入将定向到窗口，并为用户更改各种视觉提示。 系统向创建前台窗口的线程分配略高于其他线程的优先级。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @return 如果窗口被带到前台返回true，否则返回false
+var hWnd = mz.SetForegroundWindow(68214);
+</code></pre><h4 id=getclassname>GetClassName()</h4><pre><code class=language-js>// string GetClassName(int hWnd);
+// 检索指定窗口所属的类的名称。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @return 成功返回类名，否则返回空字符串
+var className = mz.GetClassName(68214);
+</code></pre><h4 id=getwindowtext>GetWindowText()</h4><pre><code class=language-js>// string GetClassName(int hWnd);
+// 如果指定窗口有标题栏，则将获取其文本。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @return 成功返回标题字符串，否则返回空字符串
+var str = mz.GetWindowText(68214);
+</code></pre><h4 id=setwindowtext>SetWindowText()</h4><pre><code class=language-js>// bool SetWindowText(int hWnd, string str);
+// 更改指定窗口标题栏的文本。详情参照微软文档
+// @param int hWnd      窗口句柄
+// @param string str    新标题
+// @return 成功返回true，否则返回false
+var str = mz.SetWindowText(68214, 'test');
+</code></pre><h4 id=getsctext>GetSCText()</h4><pre><code class=language-js>// string GetSCText(int hWnd);
+// 获取控件内容。
+// @param int hWnd      窗口句柄
+// @return 成功返回标题字符串，否则返回空字符串
+var str = mz.GetSCText(68214);
+</code></pre><h4 id=setsctext>SetSCText()</h4><pre><code class=language-js>// bool SetSCText(int hWnd, string str);
+// 设置控件内容。
+// @param int hWnd      窗口句柄
+// @param string str    新内容
+// @return 成功返回true，否则返回false
+var str = mz.SetSCText(68214, 'test');
+</code></pre><h4 id=windowtopmost>WindowTopMost()</h4><pre><code class=language-js>// void WindowTopMost(int hWnd, bool isTop);
+// 设置窗口置顶状态。
+// @param int hWnd      窗口句柄
+// @param bool isTop    是否置顶
+mz.WindowTopMost(68214, true);
+</code></pre><h4 id=movewindow>MoveWindow()</h4><pre><code class=language-js>// void MoveWindow(int hWnd, int x, int y);
+// 移动窗口。
+// @param int hWnd      窗口句柄
+// @param int x         新的左边距离
+// @param int y         新的顶边距离
+mz.MoveWindow(68214, 100, 10);
+</code></pre><h4 id=setwindowsize>SetWindowSize()</h4><pre><code class=language-js>// void SetWindowSize(int hWnd, int cx, int cy);
+// 设置窗口尺寸。
+// @param int hWnd      窗口句柄
+// @param int cx        新的宽度
+// @param int cy        新的高度
+mz.SetWindowSize(68214, 100, 100);
+</code></pre><h4 id=setwindowpos>SetWindowPos()</h4><pre><code class=language-js>// bool SetWindowPos(int hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, int uFlags);
+// 详情参照微软文档
+// @param int hWnd
+// @param int hWndInsertAfter
+// @param int x
+// @param int y
+// @param int cx
+// @param int cy
+// @param int uFlags
+// @return
+var is = mz.SetWindowPos(68214, 0, 10, 10, 0, 0, 4 | 1);
+</code></pre><h4 id=getwindowlongptr>GetWindowLongPtr()</h4><pre><code class=language-js>// int GetWindowLongPtr(int hWnd, int nIndex);
+// 详情参照微软文档
+// @param int hWnd
+// @param int nIndex
+// @return 成功返回请求值，失败返回0
+var style = mz.GetWindowLongPtr(68214, -16);
+</code></pre><h4 id=setwindowlongptr>SetWindowLongPtr()</h4><pre><code class=language-js>// int SetWindowLongPtr(int hWnd, int nIndex, int dwNewLong);
+// 详情参照微软文档
+// @param int hWnd
+// @param int nIndex
+// @param int dwNewLong
+// @return 成功返回上一个值，失败返回0
+var ret = mz.SetWindowLongPtr(68214, -16, 1417740416);
+</code></pre><h4 id=sendmessage>SendMessage()</h4><pre><code class=language-js>// int SendMessage(int hWnd, int Msg, int wParam, int lParam);
+// 详情参照微软文档
+// @param int hWnd
+// @param int Msg
+// @param int wParam
+// @param int lParam
+// @return 返回指定消息处理的结果；这取决于发送的消息。
+var ret = mz.SendMessage(68214, 16, 0, 0);
+</code></pre><h4 id=sendnotifymessage>SendNotifyMessage()</h4><pre><code class=language-js>// bool SendNotifyMessage(int hWnd, int Msg, int wParam, int lParam);
+// 详情参照微软文档
+// @param int hWnd
+// @param int Msg
+// @param int wParam
+// @param int lParam
+// @return 成功返回true，失败返回false
+var ret = mz.SendNotifyMessage(68214, 16, 0, 0);
+</code></pre><h4 id=postmessage>PostMessage()</h4><pre><code class=language-js>// bool PostMessage(int hWnd, int Msg, int wParam, int lParam);
+// 详情参照微软文档
+// @param int hWnd
+// @param int Msg
+// @param int wParam
+// @param int lParam
+// @return 成功返回true，失败返回false
+var ret = mz.PostMessage(68214, 16, 0, 0);
+</code></pre><h4 id=updatewindow>UpdateWindow()</h4><pre><code class=language-js>// bool UpdateWindow(int hWnd);
+// 更新窗口。详情参照微软文档
+// @param int hWnd
+// @return 成功返回true，失败返回false
+var ret = mz.UpdateWindow(68214);
+</code></pre><h4 id=invalidaterect>InvalidateRect()</h4><pre><code class=language-js>// bool InvalidateRect(int hWnd, bool Erase);
+// 更新窗口。详情参照微软文档
+// @param int hWnd
+// @param bool Erase 处理更新区域时是否要擦除更新区域中的背景
+// @return 成功返回true，失败返回false
+var ret = mz.InvalidateRect(68214, true);
+</code></pre><h4 id=getwindowthreadprocessid>GetWindowThreadProcessId()</h4><pre><code class=language-js>// int GetWindowThreadProcessId(int hWnd);
+// 通过窗口句柄获取进程PID。详情参照微软文档
+// @param int hWnd 窗口句柄
+// @return 成功返回PID，否则返回0
+var pid = mz.GetWindowThreadProcessId(68214);
+</code></pre><h4 id=getcaretrect>GetCaretRECT()</h4><pre><code class=language-js>// dynamic GetCaretRECT();
+// 获取插入符号的RECT。
+// @return 成功返回RECT，失败返回false
+var rc = mz.GetCaretRECT();
+</code></pre><p><br></p><hr><h3 id=进程>进程</h3><h4 id=getnameprocessid>GetNameProcessId()</h4><pre><code class=language-js>// array GetNameProcessId(string name);
+// 通过进程名获取进程PID
+// @param string name 进程名
+// @return 成功返回进程PID Array，否则返回空 Array
+var ret = mz.GetNameProcessId('test.exe');
+</code></pre><h4 id=getprocessidname>GetProcessIdName()</h4><pre><code class=language-js>// string GetProcessIdName(int PID);
+// 通过进程PID获取进程名称
+// @param int PID 进程ID
+// @return 成功返回进程名，否则返回0
+var ret = mz.GetProcessIdName(6553);
+</code></pre><h4 id=getprocessidpath>GetProcessIdPath()</h4><pre><code class=language-js>// string GetProcessIdPath(int PID);
+// 通过进程PID获取进程路径
+// @param int PID 进程ID
+// @return 成功返回进程路径，否则返回0
+var ret = mz.GetProcessIdPath(6553);
+</code></pre><h4 id=getchildprocessid>GetChildProcessId()</h4><pre><code class=language-js>// array GetChildProcessId(int PID);
+// 通过进程PID获取所有子进程PID
+// @param int PID 进程ID
+// @return 成功返回子进程ID Array，否则返回空Array
+var ret = mz.GetChildProcessId(6553);
+</code></pre><h4 id=getprocessidthreads>GetProcessIdThreads()</h4><pre><code class=language-js>// int GetProcessIdThreads(int PID);
+// 通过进程PID获取进程使用的线程数
+// @param int PID 进程ID
+// @return 成功返回线程数，否则返回0
+var ret = mz.GetProcessIdThreads(6553);
+</code></pre><h4 id=isprocessidexists>IsProcessIdExists()</h4><pre><code class=language-js>// bool IsProcessIdExists(int PID);
+// 判断进程PID是否有效
+// @param int PID 进程ID
+// @return 有效返回true，否则返回false
+var ret = mz.IsProcessIdExists(6553);
+</code></pre><h4 id=terminateprocess>TerminateProcess()</h4><pre><code class=language-js>// int TerminateProcess(int PID);
+// 结束指定进程
+// @param int PID 进程ID
+// @return 成功返回true，否则返回false
+var ret = mz.TerminateProcess(5112);
+</code></pre><h4 id=suspendprocess>SuspendProcess()</h4><pre><code class=language-js>// void SuspendProcess(int PID, bool state);
+// 将指定进程暂停
+// @param int PID    进程ID
+// @param bool state 状态，true暂停，false恢复
+mz.SuspendProcess(5112, true);
+</code></pre><h4 id=getpriorityclass>GetPriorityClass()</h4><pre><code class=language-js>// int GetPriorityClass(int PID);
+// 获取进程优先级
+// @param int PID 进程ID
+// @return 成功返回优先级别(0:高; 1:高于正常; 3: 正常; 4: 低于正常; 5: 低; 2: 实时;)，否则返回-1
+var ret = mz.GetPriorityClass(5112);
+</code></pre><h4 id=setpriorityclass>SetPriorityClass()</h4><pre><code class=language-js>// bool SetPriorityClass(int PID, int level);
+// 获取进程优先级
+// @param int PID   进程ID
+// @param int level 优先级(0:高; 1:高于正常; 3: 正常; 4: 低于正常; 5: 低; 2: 实时[如果权限不够则会设置为高于正常];)
+// @return 成功返回true，否则返回false
+var ret = mz.SetPriorityClass(5112);
+</code></pre><p><br></p><hr><h3 id=文件目录>文件目录</h3><h4 id=readfile>ReadFile()</h4><pre><code class=language-js>// string ReadFile(string fileName);
+// 读入文件
+// @param string fileName 文件名
+// @return 成功返回文件内容，失败返回空
+var ret = mz.ReadFile('C:\\123.txt');
+</code></pre><h4 id=writefile>WriteFile()</h4><pre><code class=language-js>// bool WriteFile(string fileName, string str);
+// 写到文件
+// @param string fileName   文件名
+// @param string str        要写出的数据，需要转换为字符串
+// @return 成功返回true，失败返回false
+var ret = mz.WriteFile('C:\\123.txt', 'test\nabc');
+</code></pre><h4 id=findfile>FindFile()</h4><pre><code class=language-js>// string FindFile(string fileName, FILE_ATTRIBUTE FileAttributes);
+// 寻找文件
+// @param string fileName                   文件名或目录名。可以被省略。可以使用多字符 (*) 和单字符 (?) 通配符来指定多重文件。在非首次寻找文件时，参数值必须为空或被省略。
+// @param FILE_ATTRIBUTE FileAttributes     要找文件的属性。可以被省略。参数值可以为一个或多个相加。如果省略本参数，默认为搜寻除子目录外的所有文件。
+// @return 成功返回文件内容，失败返回空
+var ret = mz.FindFile('C:\\*');
+
+// 简单例子(搜索 'D:\123\' 下的所有子目录)
+let path = mz.FindFile('D:\\123\\*', FILE_ATTRIBUTE.DIRECTORY),
+    out = ''
+    ;
+while (path != '') {
+    out += path + '\n';
+    path = mz.FindFile('', FILE_ATTRIBUTE.DIRECTORY);
+}
+alert(`[${out}]`);
+</code></pre><h4 id=pathfileexists>PathFileExists()</h4><pre><code class=language-js>// bool PathFileExists(string fileName);
+// 判断指定文件或目录的路径是否有效
+// @param string fileName 文件名
+// @return 成功返回true，失败返回false
+var ret = mz.PathFileExists('C:\\123.txt');
+</code></pre><h4 id=getfilesize>GetFileSize()</h4><pre><code class=language-js>// int GetFileSize(string fileName);
+// 获取文件尺寸，大于4G文件会失去精度
+// @param string fileName 文件名
+// @return 成功返回文件尺寸，失败返回-1
+var ret = mz.GetFileSize('C:\\123.txt');
+</code></pre><h4 id=getfilesizeex>GetFileSizeEx()</h4><pre><code class=language-js>// string GetFileSizeEx(string fileName);
+// 获取文件尺寸，支持大文件(该函数返回值为字符串)
+// @param string fileName 文件名
+// @return 成功返回文件尺寸，失败返回-1
+var ret = mz.GetFileSizeEx('C:\\123.txt');
+</code></pre><h4 id=copyfile>CopyFile()</h4><pre><code class=language-js>// bool CopyFile(string ExistingFileName, string NewFileName, bool FailIfExists);
+// 将现有文件复制到新文件(不支持目录)。详情参照微软文档
+// @param string ExistingFileName   现有文件的名
+// @param string NewFileName        新文件的名
+// @param bool FailIfExists         存在则不覆盖(默认:false)
+// @return 成功返回true，失败返回false
+var ret = mz.CopyFile('C:\\1.txt', 'C:\\2.txt');
+</code></pre><h4 id=movefile>MoveFile()</h4><pre><code class=language-js>// bool MoveFile(string ExistingFileName, string NewFileName, bool FailIfExists);
+// 移动现有文件或目录（包括子文件或目录）。详情参照微软文档
+// @param string ExistingFileName   现有文件的名
+// @param string NewFileName        新文件的名
+// @param bool FailIfExists         存在则不覆盖(默认:false)
+// @return 成功返回true，失败返回false
+var ret = mz.MoveFile('C:\\1.txt', 'D:\\2.txt');
+</code></pre><h4 id=renamefile>ReNameFile()</h4><pre><code class=language-js>// bool ReNameFile(string ExistingFileName, string NewFileName);
+// 更改现有文件或目录名称，如果新文件名父路径变更将会执行移动操作
+// @param string ExistingFileName   现有文件的名(完整路径)
+// @param string NewFileName        新文件的名(完整路径)
+// @return 成功返回true，失败返回false
+var ret = mz.ReNameFile('C:\\1.txt', 'C:\\2.txt');
+</code></pre><h4 id=deletefile>DeleteFile()</h4><pre><code class=language-js>// bool DeleteFile(string FileName);
+// 删除文件(不支持目录)。详情参照微软文档
+// @param string FileName 要删除的文件的名
+// @return 成功返回true，失败返回false
+var ret = mz.DeleteFile('C:\\1.txt');
+</code></pre><h4 id=createdirectory>CreateDirectory()</h4><pre><code class=language-js>// bool CreateDirectory(string PathName);
+// 创建目录(不支持多级创建)。详情参照微软文档
+// @param string PathName 要创建的目录的路径
+// @return 成功返回true，失败返回false
+var ret = mz.CreateDirectory('C:\\123');
+</code></pre><h4 id=createdirectoryex2>CreateDirectoryEX2()</h4><pre><code class=language-js>// bool CreateDirectoryEX2(string PathName);
+// 创建多级目录
+// @param string PathName 要创建的目录的路径(字符串最大长度为248)
+// @return 成功返回true，失败返回false
+var ret = mz.CreateDirectoryEX2('C:\\123\\456\\789');
+</code></pre><h4 id=deletedirectory>DeleteDirectory()</h4><pre><code class=language-js>// bool DeleteDirectory(string PathName);
+// 删除目录(同时删除子文件或子目录)
+// @param string PathName 要删除的目录的路径
+// @return 成功返回true，失败返回false
+var ret = mz.DeleteDirectory('C:\\123');
+</code></pre><h4 id=pathisdirectory>PathIsDirectory()</h4><pre><code class=language-js>// bool PathIsDirectory(string PathName);
+// 验证路径是否为有效目录。详情参照微软文档
+// @param string PathName 目录路径
+// @return 成功返回true，失败返回false
+var ret = mz.PathIsDirectory('C:\\123');
+</code></pre><h4 id=pathisdirectoryempty>PathIsDirectoryEmpty()</h4><pre><code class=language-js>// bool PathIsDirectoryEmpty(string PathName);
+// 确定指定的路径是否为空目录(目录不存在也会返回false)。详情参照微软文档
+// @param string PathName 目录路径
+// @return 成功返回true，失败返回false
+var ret = mz.PathIsDirectoryEmpty('C:\\123');
+</code></pre><h4 id=getcurrentdirectory>GetCurrentDirectory()</h4><pre><code class=language-js>// string GetCurrentDirectory();
+// 获取当前目录(Maye Lite的目录)
+// @return 成功返回当前目录(如 C:\123\)
+var ret = mz.PathIsDirectoryEmpty('C:\\123');
+</code></pre><p><br></p><hr><h3 id=输入与显示>输入与显示</h3><h4 id=msgbox>MsgBox()</h4><pre><code class=language-js>// void MsgBox(string msg, string title);
+// 显示一个消息框
+// @param string msg    消息框内容
+// @param string title  消息框标题
+mz.MsgBox('msg');
+</code></pre><h4 id=confirm>Confirm()</h4><pre><code class=language-js>// bool Confirm(string msg, string title);
+// 显示一个确认框
+// @param string msg    确认框内容
+// @param string title  确认框标题
+// @return 点击Yes按钮返回true，否则返回false
+var ret = mz.Confirm('msg');
+</code></pre><h4 id=inputbox>InputBox()</h4><pre><code class=language-js>// object InputBox(string initialText, string title);
+// 显示一个确认框
+// @param string initialText 输入框初始字符串
+// @param string title       输入框标题
+// @return object{
+//              code: -1,       执行返回代码，-1表示取消输入，1表示确认输入
+//              text: ''        输入的字符串
+//         }
+var ret = mz.InputBox();
+</code></pre><h4 id=inputboxex>InputBoxEx()</h4><pre><code class=language-js>// object InputBoxEx(string initialText, string title, string Msg, int InputMode, bool MultiLineEdit, int MsgHeight, string btnTextOK, string btnTextCancel, int hWnd);
+// 显示一个确认框
+// @param string initialText    输入框初始字符串
+// @param string title          输入框标题
+// @param string Msg            提示信息，如果提示信息太长或行数过多，可通过设置MsgHeight来保证全部显示。
+// @param int InputMode         输入方式，参数值可以为以下值： 1、输入文本； 2、输入整数； 3、输入小数(未实现)； 4、输入密码。
+// @param bool MultiLineEdit    是否使用多行编辑框
+// @param int MsgHeight         提示信息高度，默认：45
+// @param string btnTextOK      确认按钮标题，默认：确认输入(&amp;O)
+// @param string btnTextCancel  取消按钮标题，默认：取消(&amp;C)
+// @param int hWnd              父窗口句柄
+// @return object{
+//              code: -1,       执行返回代码，-1表示取消输入，1表示确认输入
+//              text: ''        输入的字符串
+//         }
+var ret = mz.InputBoxEx('初始字符', '标题', '提示信息', NULL, true, 25, '输入(&amp;O)', '取消(&amp;C)', NULL);
+</code></pre><p><br></p><hr><h3 id=html窗口-仅多进程生效>HTML窗口(仅多进程生效)</h3><blockquote><p>调用 <code>sf.Create()</code> 命令创建窗口后才可调用其他 <code>sf.***()</code> 命令<br>如果窗口被关闭将立即结束脚本进程。</p></blockquote><h4 id=sf-create>sf.Create()</h4><pre><code class=language-js>// int sf.Create(object val);
+// 创建一个窗口，窗口创建后为隐藏状态，需调用 sf.Show() 显示。（该命令限制创建一次）
+// 参数值必须与类型完全相等，否则返回-4(参数类型不正确)
+// @param object val {
+//                  html: '',                   // [string] 默认HTML(body内，后续可通过DOM随意建立)
+//                  isUI: false,                // [bool] 是否加载UI库，包含 jQuery(3.5.1),ZUI(1.10.0-标准版)
+//                  isTransparent: false,       // [bool] 是否为透明窗口
+//                  isTop: false,               // [bool] 是否置顶
+//                  IsKillFocuHide: false,      // [bool] 是否失去焦点后隐藏
+//                  isMaxBtn: true,             // [bool] 是否显示最大化按钮(不支持透明窗口)
+//                  isMinBtn: true,             // [bool] 是否显示最小化按钮(不支持透明窗口)
+//                  isSizingBorder: true,       // [bool] 是否为可调边框
+//                  isAppWindow: true,          // [bool] 是否在任务栏显示
+//                  cx: 400,                    // [int] 窗口宽度
+//                  cy: 300,                    // [int] 窗口高度
+//                  x: -1,                      // [int] 窗口左边 (xy 均为-1则窗口居中)
+//                  y: -1,                      // [int] 窗口顶边
+//                  style: 0,                   // [int] 窗口附加style
+//                  styleEx: 0,                 // [int] 窗口附加styleEx
+//               }
+// @return 成功返回窗口句柄，失败返回错误代码(小于0)
+var ret = mz.sf.Create({ html: '&lt;b&gt;test&lt;/b&gt;', isTop: true });
+</code></pre><h4 id=sf-show>sf.Show()</h4><pre><code class=language-js>// int sf.Show(bool isShow);
+// 显示或隐藏已创建窗口
+// @param bool isShow 是否显示已创建窗口
+// @return 成功返回值大于0，失败返回错误代码(小于0)
+var ret = mz.sf.Show(true);
+</code></pre><h4 id=sf-gethwnd>sf.GetHWnd()</h4><pre><code class=language-js>// int sf.GetHWnd();
+// 获取窗口句柄
+// @return 成功返回窗口句柄，失败返回错误代码(小于0)
+var ret = mz.sf.GetHWnd();
+</code></pre><h4 id=sf-movevent>sf.Movevent()</h4><pre><code class=language-js>// int sf.Movevent();
+// 移动事件
+// @return 成功返回值大于0，失败返回错误代码(小于0)
+var ret = mz.sf.Show();
+
+// 按下移动
+mz.sf.Create('&lt;button type=&quot;button&quot; onmousedown=&quot;mz.sf.Movevent();&quot;&gt;按下移动&lt;/button&gt;&lt;style&gt;body{background-color: #fff;}&lt;/style&gt;', true);
+mz.sf.Show(true);
+</code></pre><h4 id=sf-move>sf.Move()</h4><pre><code class=language-js>// dynamic sf.Move(dynamic pt);
+// 获取或设置窗口位置。
+// @param dynamic pt 如果参数值为 POINT 则设置窗口位置，空白则获取窗口位置
+// @return 成功返回当前位置类型为POINT，失败返回错误代码(小于0)
+var ret = mz.sf.Move({ x: 100, y: 300 });
+
+// 获取窗口位置
+var pt = mz.sf.Move();
+// 设置窗口位置
+var pt = mz.sf.Move({ y: 150 });
+</code></pre><h4 id=sf-size>sf.Size()</h4><pre><code class=language-js>// dynamic sf.Size(dynamic size);
+// 获取或设置窗口尺寸。
+// @param dynamic size 如果参数值为 SIZE 则设置窗口尺寸，空白则获取窗口尺寸
+// @return 成功返回当前尺寸类型为SIZE，失败返回错误代码(小于0)
+var ret = mz.sf.Size({ cx: 100, cy: 300 });
+
+// 获取窗口尺寸
+var size = mz.sf.Size();
+// 设置窗口尺寸
+var size = mz.sf.Size({ cy: 150 });
+</code></pre><h4 id=sf-setwindowtext>sf.SetWindowText()</h4><pre><code class=language-js>// int sf.SetWindowText(string str);
+// 设置窗口标题，仅非透明窗口生效
+// @param string str    新标题
+// @return 成功返回true，否则返回false
+var ret = mz.sf.SetWindowText('new title');
+</code></pre><h4 id=sf-setfocus>sf.SetFocus()</h4><pre><code class=language-js>// int sf.SetFocus();
+// 获取焦点
+// @return 成功返回true，否则返回false
+var ret = mz.sf.SetFocus();
+</code></pre><p><br><br></p><hr><p><font style=color:darkgrey>更多功能陆续添加中&hellip;.</font></p><pre><code class=language-js>/*
+
+TODO:
+    注册表
+    配置项
+    内存读写搜索
+
+*/
+</code></pre></div><div class="kratos-copyright text-center clearfix"><h5>本作品采用 <a rel="license nofollow" target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/ title="CC BY-NC-SA 4.0">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a> 进行许可</h5></div><footer class="kratos-entry-footer clearfix"><div class="post-like-donate text-center clearfix"><a href=javascript:; class=Donate><i class="fa fa-bitcoin"></i>&nbsp;打赏</a></div><div class="footer-tag clearfix"><div class=pull-left><i class="fa fa-tags"></i>&nbsp;
+<a href=/tags/maye.html rel=tag>Maye</a>
+<a href=/tags/mayelite.html rel=tag>MayeLite</a></div><div class=pull-date><span title="2022年12月23日 22:22:50">最后编辑：2022年12月23日</span></div></div></footer></div><nav class="navigation post-navigation clearfix" role=navigation><div class=nav-next><a title="Maye Lite 一个更轻更简洁的快速启动工具" href=/post/25842.html>下一篇 &gt;</a></div></nav><div id=comments class=comments-area><div id=comments-body data-pid=/post/25848.html><p class=mClose>评论功能被我吃了。</p></div></div></article></section><aside id=kratos-widget-area class="col-md-4 hidden-xs hidden-sm scrollspy"><div id=sidebar class=affix-top><aside class="widget widget_kratos_about clearfix"><div class=photo-background></div><div class="photo-wrapper clearfix"><div class="photo-wrapper-tip text-center"><a href=javascript:;><img class=about-photo src=/images/avatar.png alt=25H></a></div></div><div class=textwidget><p class=text-center><span style=font-size:10pt></span></p></div></aside><aside class="widget widget_toc clearfix"><h4 class=widget-title>文章目录</h4><div id=TableOfContents></div></aside><aside class="widget widget_categories clearfix"><h4 class=widget-title>分类目录</h4><ul><li><a title=code href=/categories/code.html>code</a></li><li><a title=作品 href=/categories/%E4%BD%9C%E5%93%81.html>作品</a></li><li><a title=未分类 href=/categories/%E6%9C%AA%E5%88%86%E7%B1%BB.html>未分类</a></li><li><a title=状态 href=/categories/%E7%8A%B6%E6%80%81.html>状态</a></li><li><a title=笔记 href=/categories/%E7%AC%94%E8%AE%B0.html>笔记</a></li><li><a title=转载 href=/categories/%E8%BD%AC%E8%BD%BD.html>转载</a></li></ul></aside><aside id=kratos_ad-2 class="widget widget_kratos_ad clearfix"><a href=/z/about.html#打赏-赞助><img class="carousel-inner img-responsive img-rounded" src=/images/rw.jpg></a></aside></div></aside></div></div></div><footer><div id=footer style=background:#23282d><div class=container><div class=row><div class="col-md-6 col-md-offset-3 footer-list text-center"><p class=kratos-social-icons></p><p>© 2022 <a href=https://blog.arae.cc/>ARAE</a>. All Rights Reserved.<br>Powered by <a href=https://gohugo.io/ target=_blank rel=nofollow>Hugo</a> Hosted by <a href=https://pages.github.com target=_blank rel=nofollow>Github Pages</a><br>Theme <a href=https://blog.arae.cc/>Rolla</a> Made by <a href=https://moedog.org/ target=_blank rel=nofollow>Moedog</a> Modified by <a href=https://blog.arae.cc/>25H</a></p></div></div></div><div class="cd-tool text-center"><div class="gotop-box active"><div class=gotop-btn><span class="fa fa-chevron-up"></span></div></div><div class=search-box><span class="fa fa-search"></span><form class=search-form id=searchform target=_blank role=search><input type=text name=wd id=search placeholder=Search... style=display:none></form></div></div></div></footer></div></div></body></html>
